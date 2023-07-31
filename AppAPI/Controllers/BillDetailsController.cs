@@ -21,7 +21,14 @@ namespace AppAPI.Controllers
         {
             return await _dbcontext.BillDetails.ToListAsync();
         }
-        [HttpGet("idBill")]
+
+        [HttpGet("GetBillDetails/{id}")]
+        public BillDetail GetBillDetailbyID(Guid id)
+        {
+            return _dbcontext.BillDetails.ToList().FirstOrDefault(x => x.Id == id);
+        }
+
+        [HttpGet("idBill/{id}")]
         public IEnumerable<BillDetailsViewModel> GetByBill(Guid id)
         {
             var billDetails = _dbcontext.BillDetails.Where(c => c.IdBill == id)
@@ -40,13 +47,13 @@ namespace AppAPI.Controllers
         }
 
         // POST api/<BillDetailsController>
-        [HttpPost]
-        public string Post(Guid Id, Guid IdBill, Guid IdProduct, Guid? IdCombo, int soluong, decimal dongia)
+        [HttpPost("Add")]
+        public string Post(Guid IdBill, Guid IdProduct, Guid? IdCombo, int soluong, decimal dongia)
         {
             // Tạo một đối tượng mới
             var billDetail = new BillDetail()
             {
-                Id = Id,
+                Id = new Guid(),
                 IdBill = IdBill,
                 IdProductDetail = IdProduct,
                 IdCombo = IdCombo,
@@ -82,9 +89,8 @@ namespace AppAPI.Controllers
 
             return "Success";
         }
-
         // DELETE api/<BillDetailsController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete/{id}")]
         public string Delete(Guid id)
         {
             var billDetail = _dbcontext.BillDetails.Find(id);
