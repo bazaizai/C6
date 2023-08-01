@@ -17,9 +17,20 @@ namespace AppAPI.Controllers
         }
         // GET: api/<BillController>
         [HttpGet]
-        public async Task<IEnumerable<Bill>> GetBill()
+        public async Task<IEnumerable<BillViewModel>> GetBill()
         {
-            return await _dbContext.Bills.ToListAsync();
+            return (await _dbContext.Bills.ToListAsync()).Select(c => new BillViewModel
+            {
+                Id = c.Id,
+                Ma = c.Ma,
+                IdUser = c.IdUser,
+                TenNV = _dbContext.Users.ToList().FirstOrDefault(a => a.Id == c.IdUser).Ten,
+                NgayTao = c.NgayTao,
+                DiaChi = c.DiaChi,
+                NgayThanhToan = c.NgayThanhToan,
+                Sdt = c.Sdt,
+                TienShip = c.TienShip,
+            });
         }
 
         // GET api/<BillController>/5
@@ -31,28 +42,27 @@ namespace AppAPI.Controllers
 
         // POST api/<BillController>
         [HttpPost]
-        public async void CreateBill(Guid idUser, string ma, DateTime ngayTao, DateTime ngayThanhToan,
-         string diaChi, string sdt, int tienShip)
+        public async void CreateBill(Bill obj)
         {
 
-            if (_dbContext.Bills.Count() == null)
-            {
-                ma = "Bill1";
-            }
-            else
-            {
-                ma = "Bill" + (_dbContext.Bills.Count() + 1);
-            }
+            //if (_dbContext.Bills.Count() == null)
+            //{
+            //    obj.Ma = "Bill1";
+            //}
+            //else
+            //{
+            //    obj.Ma = "Bill" + (_dbContext.Bills.Count() + 1);
+            //}
             Bill bill = new Bill()
             {
                 Id = Guid.NewGuid(),
-                IdUser = idUser,
-                Ma = ma,
-                NgayTao = ngayTao,
-                NgayThanhToan = ngayThanhToan,
-                DiaChi = diaChi,
-                Sdt = sdt,
-                TienShip = tienShip,
+                IdUser = Guid.Parse("17AE2BE6-2C6A-5CAB-3BCB-6F55FF55DDAB"),
+                Ma = obj.Ma,
+                NgayTao = obj.NgayTao,
+                NgayThanhToan = obj.NgayThanhToan,
+                DiaChi = obj.DiaChi,
+                Sdt = obj.DiaChi,
+                TienShip = obj.TienShip,
             };
             _dbContext.Bills.Add(bill);
             _dbContext.SaveChanges();
@@ -60,17 +70,16 @@ namespace AppAPI.Controllers
 
         // PUT api/<BillController>/5
         [HttpPut("Update")]
-        public async void PutAsync(Guid id, Guid idUser, string ma, DateTime ngayTao, DateTime ngayThanhToan,
-         string diaChi, string sdt, int tienShip)
+        public async void PutAsync(Bill obj)
         {
-            var bill = (await _dbContext.Bills.ToListAsync()).First(p => p.Id == id);
-            bill.IdUser = idUser;
-            bill.Ma = ma;
-            bill.NgayTao = ngayTao;
-            bill.NgayThanhToan = ngayThanhToan;
-            bill.DiaChi = diaChi;
-            bill.Sdt = sdt;
-            bill.TienShip = tienShip;
+            var bill = (await _dbContext.Bills.ToListAsync()).First(p => p.Id == obj.Id);
+            bill.IdUser = obj.IdUser;
+            bill.Ma = obj.Ma;
+            bill.NgayTao = obj.NgayTao;
+            bill.NgayThanhToan = obj.NgayThanhToan;
+            bill.DiaChi = obj.DiaChi;
+            bill.Sdt = obj.Sdt;
+            bill.TienShip = obj.TienShip;
             _dbContext.Bills.Update(bill);
             await _dbContext.SaveChangesAsync();
         }
