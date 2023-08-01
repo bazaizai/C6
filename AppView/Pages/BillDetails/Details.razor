@@ -1,0 +1,98 @@
+﻿@page "/BillDetails/{id}"
+@inject NavigationManager NavigationManager;
+@inject IBillDetailsServices _iBillDetailsServices;
+
+<h3>
+    @if (isEditMode)
+    {
+        <span>Edit Bill Detail</span>
+    }
+    else
+    {
+        <span>Bill Detail</span>
+    }
+</h3>
+
+@if (isEditMode)
+{
+    <form>
+        <div class="form-group">
+            <label for="IdBill">Id Bill:</label>
+            <input type="text" class="form-control" id="IdBill" @bind="@billDetail.IdBill" />
+        </div>
+        <div class="form-group">
+            <label for="IdProductDetail">Id Product Detail:</label>
+            <input type="text" class="form-control" id="IdProductDetail" @bind="@billDetail.IdProductDetail" />
+        </div>
+        <div class="form-group">
+            <label for="IdCombo">Id Combo:</label>
+            <input type="text" class="form-control" id="IdCombo" @bind="@billDetail.IdCombo" />
+        </div>
+        <div class="form-group">
+            <label for="SoLuong">So Luong:</label>
+            <input type="text" class="form-control" id="SoLuong" @bind="@billDetail.SoLuong" />
+        </div>
+        <div class="form-group">
+            <label for="DonGia">Don Gia:</label>
+            <input type="text" class="form-control" id="DonGia" @bind="@billDetail.DonGia" />
+        </div>
+        <button type="button" class="btn btn-primary" @onclick="SaveBillDetail">Save</button>
+        <button type="button" class="btn btn-secondary" @onclick="CancelEdit">Cancel</button>
+    </form>
+}
+else if (billDetail != null)
+{
+    <div>
+        <h4>Id: @billDetail.Id</h4>
+        <p>IdBill: @billDetail.IdBill</p>
+        <p>IdProductDetail: @billDetail.IdProductDetail</p>
+        <p>IdCombo: @billDetail.IdCombo</p>
+        <p>SoLuong: @billDetail.SoLuong</p>
+        <p>DonGia: @billDetail.DonGia</p>
+    </div>
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@if (!isEditMode)
+{
+    <button class="btn btn-primary" @onclick="(() => StartEdit())">Edit</button>
+}
+<button class="btn btn-primary" @onclick="(() => GoBack())">Back</button>
+
+@code {
+    private BillDetail billDetail;
+    private bool isEditMode = false;
+
+    [Parameter]
+    public string id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Guid billDetailId = Guid.Parse(id);
+        billDetail = await _iBillDetailsServices.GetBillDetailsById(billDetailId);
+    }
+
+    private void StartEdit()
+    {
+        isEditMode = true;
+    }
+
+    private async Task SaveBillDetail()
+    {
+        await _iBillDetailsServices.UpdateBillDetails(billDetail);
+        isEditMode = false;
+    }
+
+    private void CancelEdit()
+    {
+        isEditMode = false;
+    }
+
+    private void GoBack()
+    {
+        NavigationManager.NavigateTo("BillDetails");
+    }
+}

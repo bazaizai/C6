@@ -1,0 +1,66 @@
+﻿@page "/BillDetails"
+@inject IBillDetailsServices _iBillDetailsServices;
+@inject NavigationManager NavigationManager;
+
+@code {
+
+    private List<BillDetail> billDetails;
+
+    protected override async Task OnInitializedAsync()
+    {
+        billDetails = (await _iBillDetailsServices.GetListBillDetails()).ToList();
+    }
+    void ShowBill(Guid id)
+    {
+        NavigationManager.NavigateTo($"/BillDetails/{id}");
+    }
+    async Task DeleteBillDT(Guid id)
+    {
+        await _iBillDetailsServices.DeleteBillDetails(id);
+        NavigationManager.NavigateTo("BillDetails", forceLoad: true);
+    }
+    void CreateNewBillDetails()
+    {
+        NavigationManager.NavigateTo("/create-BillDT");
+    }
+}
+
+<button class="btn btn-primary mt-2" @onclick="CreateNewBillDetails">Create BillDetails</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th>IdBillDT</th>
+            <th>IdBill</th>
+            <th>IDProduct</th>
+            <th>IDCombo</th>
+            <th>SoLuong</th>
+            <th>DonGia</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (billDetails != null)
+        {
+            foreach (var item in billDetails)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.IdBill</td>
+                    <td>@item.IdProductDetail</td>
+                    <td>@item.IdCombo</td>
+                    <td>@item.SoLuong</td>
+                    <th>@item.DonGia</th>
+                    <td>
+                        <button class="btn btn-primary" @onclick="(() => ShowBill(item.Id))"><i class="oi oi-pencil"></i></button>
+                        <button class="btn btn-primary" @onclick="(() => DeleteBillDT(item.Id))"><i class="oi oi-delete"></i></button>
+
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+
+
+
