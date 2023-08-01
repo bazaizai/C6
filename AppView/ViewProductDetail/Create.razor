@@ -36,6 +36,6 @@
     private void AddProduct()
     {
         productService.Add(newProduct);
-        navigationManager.NavigateTo("/productDetails");
+        navigationManager.NavigateTo("/productDetails", forceLoad:true);
     }
 }
