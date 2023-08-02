@@ -38,7 +38,7 @@ namespace AppView.Services
 
         public async Task<bool> UpdateEntity(CartDetail entity)
         {
-            return await (await _httpClient.PutAsJsonAsync($"api/CartDetails/{entity.Id}",entity)).Content.ReadFromJsonAsync<bool>();
+            return await (await _httpClient.PutAsJsonAsync($"api/CartDetails",entity)).Content.ReadFromJsonAsync<bool>();
         }
     }
 }
