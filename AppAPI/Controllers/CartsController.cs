@@ -14,7 +14,7 @@ namespace AppAPI.Controllers
         {
             _dbContext = new DBContextModel();
         }
-        [HttpGet]
+        [HttpGet("{Id}")]
         public async Task<Cart> GetEntityAynsc(Guid Id)
         {
             return (await _dbContext.Carts.ToListAsync()).FirstOrDefault(x => x.UserID == Id);
@@ -56,7 +56,7 @@ namespace AppAPI.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("{Id}")]
         public async Task<bool> DeleteEntityAsync(Guid Id)
         {
             try

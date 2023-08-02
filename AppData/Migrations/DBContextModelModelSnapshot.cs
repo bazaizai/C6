@@ -104,14 +104,14 @@ namespace AppData.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("DetailProductID")
-                        .HasColumnType("UNIQUEIDENTIFIER");
+                    b.Property<Guid?>("DetailProductID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Dongia")
                         .HasColumnType("decimal");
 
-                    b.Property<Guid>("IdCombo")
-                        .HasColumnType("UNIQUEIDENTIFIER");
+                    b.Property<Guid?>("IdCombo")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Soluong")
                         .HasColumnType("int");
@@ -305,15 +305,11 @@ namespace AppData.Migrations
                 {
                     b.HasOne("AppData.Models.ProductDetail", "ProductDetail")
                         .WithMany("CartDetail")
-                        .HasForeignKey("DetailProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DetailProductID");
 
                     b.HasOne("AppData.Models.Combo", "Combo")
                         .WithMany("CartDetails")
-                        .HasForeignKey("IdCombo")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdCombo");
 
                     b.HasOne("AppData.Models.Cart", "Cart")
                         .WithMany("cartdetail")
