@@ -4,66 +4,73 @@ using System.Net;
 
 namespace AppView
 {
-    public class UserServices:IUserServices
+    public class UserServices : IUserServices
     {
-        public async Task<bool> Add(User user)
+        public async Task<bool> Add(User p)
         {
             var httpClient = new HttpClient();
-            string apiUrl ="";
-            try
-            {
-                var response = await httpClient.PostAsync(apiUrl, null);
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    return true;
-                }
-                return false;
 
-            }
-            catch (Exception ex)
+            string apiUrl = $"https://localhost:7075/api/User?ten={p.Ten}&IdRole={p.IdRole}&Ma={p.Ma}&DiaChi={p.DiaChi}&Sdt={p.Sdt}&MatKhau={p.MatKhau}&Email={p.Email}";
+            var response = await httpClient.PostAsync(apiUrl, null);
+            if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine($"Lỗi khi thêm người dùng: {ex.Message}");
-                return false;
+                return true;
             }
+
+            else return false;
+
+
         }
         public async Task<bool> Delete(Guid id)
         {
+            string apiUrl = $"https://localhost:7075/api/User/{id}";
             var httpClient = new HttpClient();
-            string apiUrl = $"https://localhost:7280/api/User/Delete-User?id={id}";
+
             var response = await httpClient.DeleteAsync(apiUrl);
-            return true;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else return false;
         }
 
-        public async Task<bool> Edit(User user)
+        public async Task<bool> Edit(User p)
         {
+            string apiUrl = $"https://localhost:7075/api/User/{p.Id}?ten={p.Ten}&IdRole={p.IdRole}&Ma={p.Ma}&DiaChi={p.DiaChi}&Sdt={p.Sdt}&MatKhau={p.MatKhau}&Email={p.Email}";
             var httpClient = new HttpClient();
-            string apiUrl = $"";
-            var response = await httpClient.PutAsync(apiUrl, null);
-            return true;
+
+            var content = new StringContent(string.Empty);
+
+            var response = await httpClient.PutAsync(apiUrl, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            else return false;
         }
 
         public async Task<List<User>> GetAll()
         {
-            string apiUrl = "https://localhost:7280/api/User";
-            var httpClient = new HttpClient(); // tạo ra để callApi
+            string apiUrl = "https://localhost:7075/api/User";
+            var httpClient = new HttpClient();
             var response = await httpClient.GetAsync(apiUrl);
-            // Lấy dữ liệu Json trả về từ Api được call dạng string
             string apiData = await response.Content.ReadAsStringAsync();
-            // Đọc từ string Json vừa thu  được sang List<T>
             var users = JsonConvert.DeserializeObject<List<User>>(apiData);
             return users;
         }
 
-        public Task<bool> GetByID(Guid id)
+        public async Task<User> GetByID(Guid id)
         {
-            throw new NotImplementedException();
+            return (await GetAll()).FirstOrDefault(x => x.Id == id);
         }
 
         public async Task<User> GetByLogin(string taikhoan, string matkhau)
         {
             var httpClient = new HttpClient();
-            //string apiUrl = $"https://localhost:7280/api/User/GetUserByName?taikhoan={taikhoan}&matkhau={matkhau}";
-            string apiUrl = $"";
+            string apiUrl = $"https://localhost:7075/api/User/GetUserLogin?email={taikhoan}&matkhau={matkhau}";
             var response = await httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
             var users = JsonConvert.DeserializeObject<User>(apiData);
@@ -73,7 +80,7 @@ namespace AppView
         public async Task<List<User>> GetByName(string name)
         {
             var httpClient = new HttpClient();
-            string apiUrl = $"https://localhost:7280/api/User/name?name={name}";
+            string apiUrl = $"https://localhost:7075/api/User/GetUserByName?name={name}";
             var response = await httpClient.PutAsync(apiUrl, null);
             string apiData = await response.Content.ReadAsStringAsync();
             var users = JsonConvert.DeserializeObject<List<User>>(apiData);

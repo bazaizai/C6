@@ -69,5 +69,11 @@ namespace AppAPI.Controllers
         {
             return repos.GetAll().FirstOrDefault(c => c.Email == email && c.MatKhau == matkhau);
         }
+        [HttpGet("GetUserByName")]
+        public IEnumerable<User> GetUserByName(string name)
+        {
+            return repos.GetAll().Where(c => c.Ten == name).ToList();
+        }
+
     }
 }

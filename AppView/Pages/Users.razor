@@ -1,5 +1,55 @@
-﻿<h3>Users</h3>
+﻿@page "/Users"
+@inject IUserServices UserServices
+@using AppView.Pages;
+<PageTitle>Users</PageTitle>
+
+<h3>Users</h3>
 
 @code {
-
+    
+    
+   
 }
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Role
+                </th>
+                <th>
+                    Ma
+                </th>
+                <th>
+                    Dia Chi
+                </th>
+                <th>
+                    SDT
+                </th>
+                <th>
+                    Mk
+                </th>
+                <th>
+                    Email
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        @code {
+            private List<Users> users;
+
+            protected override async Task OnInitializedAsync()
+            {
+                //users = await UserServices.GetAll();
+            }
+        }
+        @foreach (var item in users)
+        {
+
+            }
+        </tbody>
+
+    </table>
+

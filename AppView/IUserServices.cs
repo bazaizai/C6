@@ -6,7 +6,7 @@ namespace AppView
     {
         public Task<List<User>> GetAll();
        
-        public Task<bool> GetByID(Guid id);
+        public Task<User> GetByID(Guid id);
         public Task<User> GetByLogin(string Email, string matkhau);
         public Task<List<User>> GetByName(string name);
         public Task<bool> Add(User user);

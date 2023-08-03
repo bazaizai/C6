@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace AppView
 {
-    public class RoleServices:IRoleServices
+    public class RoleServices : IRoleServices
     {
         public async Task<bool> Add(Role p)
         {
@@ -14,20 +14,20 @@ namespace AppView
             {
                 return true;
             }
-            else { return false; }
+            else return false;
         }
 
 
         public async Task<bool> Delete(Guid id)
         {
-            string apiUrl = $"https://localhost:7280/api/Product/{id}";
+            string apiUrl = $"https://localhost:7075/api/Role/{id}";
             var httpClient = new HttpClient();
             var response = await httpClient.DeleteAsync(apiUrl);
             if (response.IsSuccessStatusCode)
             {
                 return true;
             }
-            else { return false; }
+            else  return false;
 
         }
 
@@ -55,14 +55,10 @@ namespace AppView
             return p;
         }
 
-        public Task<bool> GetByID(Guid id)
+        public async Task<Role> GetByID(Guid id)
         {
-            throw new NotImplementedException();
+            return (await GetAllRole()).FirstOrDefault(x => x.Id == id);
         }
 
-        public Task<List<Role>> GetByName(string name)
-        {
-            throw new NotImplementedException();//return context.Users.FirstOrDefault(p => p.Id == id);
-        }
     }
 }
