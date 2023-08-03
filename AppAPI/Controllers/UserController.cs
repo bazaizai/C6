@@ -1,4 +1,5 @@
-﻿using AppData.Models;
+﻿using AppData;
+using AppData.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,19 +11,20 @@ namespace AppAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        DBContextModel context = new DBContextModel();
-        DbSet<User> user;
-        private DbSet<User> dbset;
+        private readonly IRepo<User> repos;
+        DBContextModel dbContextModel = new DBContextModel();
+        DbSet<User> Users;
         public UserController()
         {
-            user = context.Users;
-            dbset = context.Set<User>();
+            Users = dbContextModel.Users;        
+            Repo<User> all = new Repo<User>(dbContextModel, Users);    
+            repos = all;
+            
         }
-        // GET: api/<userController>
         [HttpGet]
         public IEnumerable<User> GetAll()
         {
-            return dbset.ToList();
+            return repos.GetAll();
         }
 
         [HttpPost]
@@ -38,35 +40,34 @@ namespace AppAPI.Controllers
             user.MatKhau = MatKhau;
             user.Email = Email;
             user.Id = Guid.NewGuid();
-            dbset.Add(user);
-            context.SaveChanges();
-            return true;
+            return repos.AddItem(user);
         }
 
         [HttpPut("{id}")]
-        public bool Put(Guid id, string ten, Guid IdRole, string Ma, string DiaChi, string Sdt, string MatKhau, string Email)
+        public bool Edit(Guid id, string ten, Guid IdRole, string Ma, string DiaChi, string Sdt, string MatKhau, string Email)
         {
-            var user = dbset.ToList().First(p => p.Id == id);
+            var user =repos.GetAll().First(p => p.Id == id);
             user.Ten = ten;
             user.IdRole = IdRole;
             user.Ma = Ma;
             user.DiaChi= DiaChi;
             user.Sdt = Sdt;
             user. MatKhau = MatKhau;
-            user.Email = Email; 
-            dbset.Update(user);
-            context.SaveChanges();
-            return true;
+            user.Email = Email;
+            return repos.EditItem(user);
         }
 
         // DELETE api/<SaleController>/5
         [HttpDelete("{id}")]
         public bool Delete(Guid id)
         {
-            var user = dbset.ToList().First(p => p.Id == id);
-            dbset.Remove(user);
-            context.SaveChanges();
-            return true;
+            var user = repos.GetAll().First(p => p.Id == id);
+            return repos.RemoveItem(user);
+        }
+        [HttpGet("GetUserLogin")]
+        public User GetUserByLogin(string email, string matkhau)
+        {
+            return repos.GetAll().FirstOrDefault(c => c.Email == email && c.MatKhau == matkhau);
         }
     }
 }
