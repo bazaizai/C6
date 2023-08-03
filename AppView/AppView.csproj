@@ -17,4 +17,8 @@
     <ProjectReference Include="..\AppData\AppData.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AppData\AppData.csproj" />
+  </ItemGroup>
+
 </Project>

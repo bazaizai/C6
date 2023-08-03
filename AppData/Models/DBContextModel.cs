@@ -19,7 +19,7 @@ namespace AppData.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=MI\SQLEXPRESS;Initial Catalog=C6;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=BAZAIZAI\SQLEXPRESS;Initial Catalog=C6;Integrated Security=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

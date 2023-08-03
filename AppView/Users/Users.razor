@@ -1,12 +1,18 @@
 ﻿@page "/Users"
 @inject IUserServices UserServices
-@using AppView.Pages;
+
 <PageTitle>Users</PageTitle>
 
 <h3>Users</h3>
 
 @code {
     
+    private List<Users> users;
+
+    protected override async Task OnInitializedAsync()
+    {
+        users = (await UserServices.GetAll()).ToList();
+    }
     
    
 }
@@ -37,14 +43,14 @@
             </tr>
         </thead>
         <tbody>
-        @code {
+       @* @code {
             private List<Users> users;
 
             protected override async Task OnInitializedAsync()
             {
                 //users = await UserServices.GetAll();
             }
-        }
+        }*@
         @foreach (var item in users)
         {
 

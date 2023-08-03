@@ -4,8 +4,7 @@ namespace AppView
 {
     public interface IUserServices
     {
-        public Task<List<User>> GetAll();
-       
+        public Task<List<User>> GetAll();     
         public Task<User> GetByID(Guid id);
         public Task<User> GetByLogin(string Email, string matkhau);
         public Task<List<User>> GetByName(string name);

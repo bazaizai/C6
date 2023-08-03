@@ -1,0 +1,80 @@
+﻿@page "/products/detail/{id}"
+@using AppView.IServices;
+
+<h3>@(isEditing ? "Cập nhật thông tin sản phẩm" : "Chi tiết sản phẩm")</h3>
+
+@if (isEditing)
+{
+    <div>
+        <label>ID:</label>
+        <input disabled value="@product.Id" />
+    </div>
+    <div>
+        <label>Mã:</label>
+        <input @bind="@product.Ma" />
+    </div>
+    <div>
+        <label>Tên:</label>
+        <input @bind="@product.Ten" />
+    </div>
+    <div>
+        <label>Ảnh:</label>
+        <input @bind="@product.Anh" />
+    </div>
+    <div>
+        <label>Giá bán:</label>
+        <input @bind="@product.GiaBan" />
+    </div>
+    <div>
+        <label>Loại:</label>
+        <input @bind="@product.Loai" />
+    </div>
+    <button class="btn btn-primary" @onclick="SaveProduct">Lưu</button>
+}
+else
+{
+    @if (product != null)
+    {
+        <div>
+            <p><strong>ID:</strong> @product.Id</p>
+            <p><strong>Mã:</strong> @product.Ma</p>
+            <p><strong>Tên:</strong> @product.Ten</p>
+            <p><strong>Ảnh:</strong> @product.Anh</p>
+            <img src="@product.Anh" alt="@product.Ten" style="max-height: 200px;" />
+            <p><strong>Giá bán:</strong> @product.GiaBan</p>
+            <p><strong>Loại:</strong> @product.Loai</p>
+        </div>
+        <button class="btn btn-primary" @onclick="EditProduct">Chỉnh sửa</button>
+    }
+    else
+    {
+        <p>Sản phẩm không tồn tại.</p>
+    }
+}
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private ProductDetail product = new ProductDetail();
+    private bool isEditing = false;
+
+    [Inject]
+    private IProductDetailService productService { get; set; }
+
+    protected override async void OnInitialized()
+    {
+        product = (await productService.GetById(Guid.Parse(Id)));
+    }
+
+    private void EditProduct()
+    {
+        isEditing = true;
+    }
+
+    private void SaveProduct()
+    {
+        productService.Update(product);
+        isEditing = false;
+    }
+}
