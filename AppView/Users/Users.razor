@@ -6,12 +6,15 @@
 <h3>Users</h3>
 
 @code {
-    
     private List<Users> users;
-
     protected override async Task OnInitializedAsync()
     {
-        users = (await UserServices.GetAll()).ToList();
+        List<AppData.Models.User> userList = await UserServices.GetAll();
+        users = userList.Select(u => new AppView.Users.Users
+        {
+            // Thực hiện chuyển đổi các thuộc tính từ User sang Users nếu cần thiết
+            // Ví dụ: Property1 = u.Property1, Property2 = u.Property2, ...
+        }).ToList();
     }
     
    
