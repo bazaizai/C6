@@ -1,0 +1,64 @@
+﻿@page "/Users"
+@inject IUserServices UserServices
+
+<PageTitle>Users</PageTitle>
+
+<h3>Users</h3>
+
+@code {
+    private List<Users> users;
+    protected override async Task OnInitializedAsync()
+    {
+        List<AppData.Models.User> userList = await UserServices.GetAll();
+        users = userList.Select(u => new AppView.Users.Users
+        {
+            // Thực hiện chuyển đổi các thuộc tính từ User sang Users nếu cần thiết
+            // Ví dụ: Property1 = u.Property1, Property2 = u.Property2, ...
+        }).ToList();
+    }
+    
+   
+}
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Role
+                </th>
+                <th>
+                    Ma
+                </th>
+                <th>
+                    Dia Chi
+                </th>
+                <th>
+                    SDT
+                </th>
+                <th>
+                    Mk
+                </th>
+                <th>
+                    Email
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+       @* @code {
+            private List<Users> users;
+
+            protected override async Task OnInitializedAsync()
+            {
+                //users = await UserServices.GetAll();
+            }
+        }*@
+        @foreach (var item in users)
+        {
+
+            }
+        </tbody>
+
+    </table>
+

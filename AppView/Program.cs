@@ -10,6 +10,7 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
+
 builder.Services.AddScoped(sp => new HttpClient
 {
     BaseAddress = new Uri("https://localhost:7075/")
@@ -19,5 +20,9 @@ builder.Services.AddScoped<IBillServices, BillServices>();
 builder.Services.AddScoped<IBillDetailsServices, BillDetailsServices>();
 
 builder.Services.AddScoped<ICartDetailService, CartDetailService>();
+
+
+//builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+builder.Services.AddScoped<IUserServices, UserServices>();
 
 await builder.Build().RunAsync();
