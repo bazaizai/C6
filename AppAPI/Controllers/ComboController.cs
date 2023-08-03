@@ -55,11 +55,14 @@ namespace AppAPI.Controllers
             try
             {
                 var combo = context.Combos.FirstOrDefault(c=>c.Id == id);
+                if (combo != null) { 
                 combo.Ten = ten;
                 combo.Ma = ma;
                 context.Combos.Update(combo);
                 context.SaveChanges();
                 return true;
+                }
+                return false;
 
 
             }

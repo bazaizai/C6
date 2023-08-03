@@ -27,12 +27,12 @@ namespace AppAPI.Controllers
         [HttpGet("{id}")]
         public List<ComboDetail> Get(Guid id)
         {
-            return context.comboDetails.Where(c=>c.IdCombo == id).ToList();
+            return context.comboDetails.Where(c => c.IdCombo == id).ToList();
         }
 
         // POST api/<ComboDetailController>
         [HttpPost]
-        public bool Post(Guid IdCombo, Guid IdProduct, int giaBan )
+        public bool Post(Guid IdCombo, Guid IdProduct, int giaBan)
         {
             try
             {
@@ -56,12 +56,16 @@ namespace AppAPI.Controllers
             try
             {
                 var comboDetail = context.comboDetails.FirstOrDefault(c => c.Id == id);
-                comboDetail.IdProductDetail = idProduct;
-                comboDetail.IdCombo = idCombo;
-                comboDetail.GiaBan = giaBan;
-                context.comboDetails.Update(comboDetail);
-                context.SaveChanges();
-                return true;
+                if (comboDetail != null)
+                {
+                    comboDetail.IdProductDetail = idProduct;
+                    comboDetail.IdCombo = idCombo;
+                    comboDetail.GiaBan = giaBan;
+                    context.comboDetails.Update(comboDetail);
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
 
 
             }
