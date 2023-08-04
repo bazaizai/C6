@@ -9,5 +9,6 @@ namespace AppView.IServices
         public Task<bool> Add(ProductDetail productDetail);
         public Task<bool> Update(ProductDetail productDetail);
         public Task<bool> DeleteById(Guid id);
+        //Chang
     }
 }
