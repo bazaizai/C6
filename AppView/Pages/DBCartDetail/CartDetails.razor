@@ -2,9 +2,7 @@
 @using AppData.ViewModes.CartDetail
 @inject NavigationManager NavigationManager
 @inject ICartDetailService cartDetailService
-
-
-
+@inject IJSRuntime JSRuntime
 
 <PageTitle>Cart Details</PageTitle>
 
@@ -71,13 +69,16 @@
 
     protected override async Task OnInitializedAsync()
     {
+        await JSRuntime.InvokeVoidAsync("alert", "Hello, this is an alert!");
         listCart = (await cartDetailService.GetListEntity(Guid.Parse("3247100d-5018-5366-7440-2c126cc94c2f"))).ToList();
         sumTotal = listCart.Sum(x => x.SoLuong * x.Dongia);
     }
 
-    void ShowItemComBo(Guid id)
+    async void ShowItemComBo(Guid id)
     {
-        NavigationManager.NavigateTo($"cartdetail/products/{id}");
+        var obj = await cartDetailService.GetEntityByKey(id);
+        var RoutId = obj.DetailProductID == null ? obj.IdCombo : obj.DetailProductID;
+        NavigationManager.NavigateTo($"cartdetail/products/{RoutId}");
     }
 
     async void DeleteItemCombo(Guid id)
@@ -91,7 +92,7 @@
 
     private async void UpdateSoLuongWithEventAndItem(ChangeEventArgs e, Guid id)
     {
-        if (e.Value != null && e.Value != "" && e.Value.ToString().Length<10)
+        if (e.Value != null && e.Value != "" && e.Value.ToString().Length < 10)
         {
             var entity = await cartDetailService.GetEntityByKey(id);
             entity.Soluong = Convert.ToInt32(e.Value);
