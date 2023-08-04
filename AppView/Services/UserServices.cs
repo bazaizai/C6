@@ -9,7 +9,7 @@ namespace AppView
         public async Task<bool> Add(User p)
         {
             var httpClient = new HttpClient();
-
+            p.IdRole = Guid.Parse("5B6E9FC7-1E70-4FD4-0448-B983316B8374");
             string apiUrl = $"https://localhost:7075/api/User?ten={p.Ten}&IdRole={p.IdRole}&Ma={p.Ma}&DiaChi={p.DiaChi}&Sdt={p.Sdt}&MatKhau={p.MatKhau}&Email={p.Email}";
             var response = await httpClient.PostAsync(apiUrl, null);
             if (response.IsSuccessStatusCode)

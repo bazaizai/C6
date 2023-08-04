@@ -56,7 +56,7 @@ namespace AppAPI.Controllers
             Bill bill = new Bill()
             {
                 Id = Guid.NewGuid(),
-                IdUser = Guid.Parse("17AE2BE6-2C6A-5CAB-3BCB-6F55FF55DDAB"),
+                IdUser = obj.IdUser,
                 Ma = obj.Ma,
                 NgayTao = obj.NgayTao,
                 NgayThanhToan = obj.NgayThanhToan,
