@@ -24,5 +24,6 @@ builder.Services.AddScoped<ICartDetailService, CartDetailService>();
 
 //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.AddScoped<IRoleServices, RoleServices>();
 
 await builder.Build().RunAsync();

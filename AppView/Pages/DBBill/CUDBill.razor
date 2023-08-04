@@ -1,6 +1,7 @@
 ﻿@page "/bill"
 @page "/bill/{id}"
 @inject IBillServices billservices
+@inject IUserServices userServices
 @inject NavigationManager navigationManager
 
 @if (Id == null)
@@ -31,15 +32,15 @@ else
         <label for="tien">tien</label>
         <InputNumber id="tien" @bind-Value="bills.TienShip" class="form-control"></InputNumber>
     </div>
-    @*<div>
+    <div>
         <label>Tennv</label><br />
         <InputSelect @bind-Value="bills.IdUser" class="form-select">
-            @foreach (var comic in SuperHeroService.Comics)
+            @foreach (var comic in users)
             {
-                <option value="@comic.Id">@comic.Name</option>
+                <option value="@comic.Id">@comic.Ten</option>
             }
         </InputSelect>
-    </div>*@
+    </div>
     <div>
         <label for="ngaytao">ngaytao</label>
         <InputDate id="ngaytao" @bind-Value="bills.NgayTao" class="form-control"></InputDate>
@@ -63,11 +64,12 @@ else
     private Bill bills = new Bill();
 
     string btnText = string.Empty;
-
+    private List<User> users = new List<User>();
     protected override async Task OnInitializedAsync()
     {
         btnText = Id == null ? "Save New Role" : "Update Role";
         bills = Id == null ? new Bill() : await billservices.GetBillByKey(Guid.Parse(Id));
+        users = await userServices.GetAll();
     }
 
     async Task HandleSubmit()
