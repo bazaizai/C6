@@ -2,7 +2,6 @@
 @using AppData.ViewModes.CartDetail
 @inject NavigationManager NavigationManager
 @inject ICartDetailService cartDetailService
-@inject IJSRuntime JSRuntime
 
 <PageTitle>Cart Details</PageTitle>
 
@@ -69,7 +68,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await JSRuntime.InvokeVoidAsync("alert", "Hello, this is an alert!");
         listCart = (await cartDetailService.GetListEntity(Guid.Parse("3247100d-5018-5366-7440-2c126cc94c2f"))).ToList();
         sumTotal = listCart.Sum(x => x.SoLuong * x.Dongia);
     }
