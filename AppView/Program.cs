@@ -18,7 +18,7 @@ builder.Services.AddScoped(sp => new HttpClient
 builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
 builder.Services.AddScoped<IBillServices, BillServices>();
 builder.Services.AddScoped<IBillDetailsServices, BillDetailsServices>();
-
+builder.Services.AddScoped<IComboDetailServices, ComboDetailServices>();
 builder.Services.AddScoped<ICartDetailService, CartDetailService>();
 
 
