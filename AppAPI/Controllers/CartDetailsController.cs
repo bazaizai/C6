@@ -18,7 +18,18 @@ namespace AppAPI.Controllers
         [HttpGet("{Id}")]
         public async Task<CartDetail> GetEntityAynsc(Guid Id)
         {
-            return ((await _dbContext.CartDetails.ToListAsync()).FirstOrDefault(x => x.Id == Id));
+            var cardetail = new CartDetail();
+            try
+            {
+                cardetail = (await _dbContext.CartDetails.ToListAsync()).FirstOrDefault(x => x.Id == Id);
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex);
+            }
+            return cardetail;
         }
 
         [HttpGet("list-cartdetail/{id}")]

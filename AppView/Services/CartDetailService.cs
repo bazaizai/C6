@@ -16,29 +16,70 @@ namespace AppView.Services
 
         public async Task<bool> AddEntity(CartDetail entity)
         {
-            return await (await _httpClient.PostAsJsonAsync("api/CartDetail",entity)).Content.ReadFromJsonAsync<bool>();
+            try
+            {
+                return await (await _httpClient.PostAsJsonAsync("api/CartDetail", entity)).Content.ReadFromJsonAsync<bool>();
+            }
+            catch (Exception ex)
+            {
+                 Console.WriteLine(ex);
+                return false;
+            }
         }
 
         public async Task<bool> DeleteEntity(Guid id)
         {
-            string url = $"api/CartDetails/{id}";
-            var response = await _httpClient.DeleteAsync(url);
-            return await response.Content.ReadFromJsonAsync<bool>();
+            try
+            {
+                string url = $"api/CartDetails/{id}";
+                var response = await _httpClient.DeleteAsync(url);
+                return await response.Content.ReadFromJsonAsync<bool>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+           
         }
 
         public async Task<CartDetail> GetEntityByKey(Guid id)
         {
-            return await _httpClient.GetFromJsonAsync<CartDetail>($"api/CartDetails/{id}");
+            try
+            {
+                return await _httpClient.GetFromJsonAsync<CartDetail>($"api/CartDetails/{id}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
         }
 
         public async Task<IEnumerable<CartDetailViewModel>> GetListEntity(Guid id)
         {
-            return await _httpClient.GetFromJsonAsync<IEnumerable<CartDetailViewModel>>($"api/CartDetails/list-cartdetail/{id}");
+            try
+            {
+                return await _httpClient.GetFromJsonAsync<IEnumerable<CartDetailViewModel>>($"api/CartDetails/list-cartdetail/{id}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
         }
 
         public async Task<bool> UpdateEntity(CartDetail entity)
         {
-            return await (await _httpClient.PutAsJsonAsync($"api/CartDetails/{entity.Id}",entity)).Content.ReadFromJsonAsync<bool>();
+            try
+            {
+                return await (await _httpClient.PutAsJsonAsync($"api/CartDetails", entity)).Content.ReadFromJsonAsync<bool>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
         }
     }
 }
