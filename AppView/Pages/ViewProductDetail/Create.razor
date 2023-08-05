@@ -3,10 +3,6 @@
 @inject NavigationManager navigationManager
 <h3>Thêm mới sản phẩm</h3>
 <div class="form-group">
-    <label for="code">Id:</label>
-    <input type="text" class="form-control" id="id" @bind="newProduct.Id">
-</div
-<div class="form-group">
     <label for="code">Mã:</label>
     <input type="text" class="form-control" id="code" @bind="newProduct.Ma">
 </div>
@@ -35,6 +31,7 @@
 
     private void AddProduct()
     {
+        newProduct.Id = Guid.NewGuid();
         productService.Add(newProduct);
         navigationManager.NavigateTo("/productDetails", forceLoad:true);
     }
