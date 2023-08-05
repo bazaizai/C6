@@ -34,9 +34,12 @@
     <link rel="stylesheet" href="css/bootstrap/css8.css">
 </head>
 <div class="page">
-    @* <div class="sidebar">
-    <NavMenu />
-    </div>*@
+    @if (Extension.idUser != Guid.Empty && Extension.Role.ToLower() =="admin")
+    {
+        <div class="sidebar">
+            <NavMenu />
+        </div>
+    }
 
     <main>
         @*Navbar*@
@@ -87,12 +90,21 @@
 
                         </ul>
                         <div class="theader-button">
-                            <a class="location" href="#">
-                                <p>Đăng nhập<br><span>(Tên sau khi login)</span></p>
-                            </a>
-                            <a class="location delivery" href="# target="_blank">
-                                <p>Đăng xuất<br><span>(Tên sau khi đăng xuất)</span></p>
-                            </a>
+                            @if (Extension.idUser == Guid.Empty)
+                            {
+
+                                <a class="location" href="login">
+                                    <p>Đăng nhập</p>
+                                </a>
+                            }else{
+                                <a class="location">
+                                    <p>@Extension.TenUser</p>
+                                </a>
+                                <button class="location delivery" @onclick="Dangxuat" target="_blank">
+                                    <p>Đăng xuất</p>
+                                </button>
+                            }
+                            
                             <a class="location" href="#">
                                 <NavLink class="nav-link" href="@($"cartdetails/{Extension.idUser}")">
                                     <span class="oi oi-plus" aria-hidden="true"></span>Giỏ hàng
@@ -176,3 +188,12 @@
         </section>
     </main>
 </div>
+@code{
+    private void Dangxuat()
+    {
+        Extension.idUser = Guid.Empty;
+        Extension.Role = string.Empty;
+        Extension.TenUser = string.Empty;
+
+    }
+}
