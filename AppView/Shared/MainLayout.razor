@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="css/bootstrap/css8.css">
 </head>
 <div class="page">
-    @if (Extension.Role.ToLower() == "admin")
+    @if (Extension.idUser != Guid.Empty && Extension.Role.ToLower() == "admin")
     {
         <div class="sidebar">
             <NavMenu />
