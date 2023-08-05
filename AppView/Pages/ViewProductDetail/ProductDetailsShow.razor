@@ -1,6 +1,7 @@
 ﻿@page "/products/detailshow/{id}"
 @inject IProductDetailService _productService
 @inject NavigationManager navigationManager
+@inject ICartDetailService cartDetailService
 @using AppView.IServices;
 
 @code {
@@ -59,7 +60,7 @@
                                 Loại: @product.Loai
                             </h5>
                             <div class="action">
-                                <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                                <button class="add-to-cart btn btn-default" type="button" @onclick="()=>AddToCart(product)">add to cart</button>
                                 <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
                             </div>
                         </div>
@@ -92,6 +93,17 @@
         _productService.Update(product);
         isEditing = false;
 
+    }
+
+    private void AddToCart(ProductDetail pro)
+    {
+        cartDetailService.AddEntity(new CartDetail {
+            DetailProductID = pro.Id,
+            Soluong = 1,
+            UserID = Extension.idUser,
+            Dongia = Convert.ToDecimal(pro.GiaBan),
+        });
+        navigationManager.NavigateTo($"/CartDetails/{Extension.idUser}");
     }
 }
 
