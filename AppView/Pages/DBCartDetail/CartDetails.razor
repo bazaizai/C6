@@ -2,10 +2,39 @@
 @using AppData.ViewModes.CartDetail
 @inject NavigationManager NavigationManager
 @inject ICartDetailService cartDetailService
-
+@inject IBillServices billService
+@inject IBillDetailsServices billDetailService
+@inject IJSRuntime jsRumtime
 <PageTitle>Cart Details</PageTitle>
 
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xác nhận địa chỉ nhận hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1 py-2">
+                        <!-- Input đã được custom bằng class của Bootstrap -->
+                        <input type="text" @bind="bill.Sdt" class="form-control rounded-pill py-2 px-4 border border-secondary" placeholder="Số điện thoại">
+                    </div>
+                    <div class="col-md-10 offset-md-1 py-2">
+                        <!-- Input đã được custom bằng class của Bootstrap -->
+                        <input type="text" @bind="bill.DiaChi" class="form-control rounded-pill py-2 px-4 border border-secondary" placeholder="Địa chỉ nhận hàng">
+                    </div>
+                </div>
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" @onclick="()=>CheckOut()" class="btn btn-primary">Thanh toán</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="card">
     <div class="card-header d-flex justify-content-center">
@@ -47,15 +76,16 @@
     </table>
 
     <div class="card-footer">
-        <div class="row">
-            <div class="col-10">
+        <div class="d-flex justify-content-between">
+            <div>
                 <b>Sum total : @sumTotal.ToString("C0", new System.Globalization.CultureInfo("vi-VN"))</b>
             </div>
-            <div class="col-2">
-                <button class="btn btn-dark">Thanh toán</button>
+            <div>
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Check Out
+                </button>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -64,11 +94,12 @@
     public string Id { get; set; }
     [Parameter]
     public List<CartDetailViewModel> listCart { get; set; }
+    private Bill bill { get; set; } = new Bill();
     private decimal sumTotal;
 
     protected override async Task OnInitializedAsync()
     {
-        listCart = (await cartDetailService.GetListEntity(Guid.Parse("3247100d-5018-5366-7440-2c126cc94c2f"))).ToList();
+        listCart = (await cartDetailService.GetListEntity(Guid.Parse(Id))).ToList();
         sumTotal = listCart.Sum(x => x.SoLuong * x.Dongia);
     }
 
@@ -82,7 +113,7 @@
     async void DeleteItemCombo(Guid id)
     {
         await cartDetailService.DeleteEntity(id);
-        listCart = (await cartDetailService.GetListEntity(Guid.Parse("3247100d-5018-5366-7440-2c126cc94c2f"))).ToList();
+        listCart = (await cartDetailService.GetListEntity(Guid.Parse(Id))).ToList();
         sumTotal = listCart.Sum(x => x.SoLuong * x.Dongia);
         StateHasChanged();
 
@@ -95,12 +126,49 @@
             var entity = await cartDetailService.GetEntityByKey(id);
             entity.Soluong = Convert.ToInt32(e.Value);
             await cartDetailService.UpdateEntity(entity);
-            listCart = (await cartDetailService.GetListEntity(Guid.Parse("3247100d-5018-5366-7440-2c126cc94c2f"))).ToList();
+            listCart = (await cartDetailService.GetListEntity(Guid.Parse(Id))).ToList();
             sumTotal = listCart.Sum(x => x.SoLuong * x.Dongia);
             StateHasChanged();
         }
 
     }
-}
 
+    async void CheckOut()
+    {
+        try
+        {
+            bill.Ma = "Ma" + Guid.NewGuid().ToString().Substring(7);
+            bill.TienShip = 30000;
+            bill.NgayThanhToan = DateTime.Now;
+            bill.IdUser = Guid.Parse(Id);
+            await billService.AddBill(bill);
+            Console.WriteLine(bill.Id == (await billService.GetBill()).FirstOrDefault(x => x.Ma == bill.Ma).Id);
+            var idBill = (await billService.GetBill()).FirstOrDefault(x => x.Ma == bill.Ma).Id;
+            var listCarDetail = (await cartDetailService.GetListEntity(Guid.Parse(Id)));
+            foreach (var item in listCarDetail)
+            {
+                var cartDetail = await cartDetailService.GetEntityByKey(item.Id);
+                await billDetailService.AddBilldetails(
+                    new BillDetail
+                    {
+                        IdBill = idBill,
+                        IdProductDetail = cartDetail.DetailProductID == null ? null : cartDetail.DetailProductID,
+                        IdCombo = cartDetail.DetailProductID == null ? cartDetail.IdCombo : null,
+                        DonGia = listCarDetail.Sum(x => x.SoLuong * x.Dongia),
+                        SoLuong = listCarDetail.Count(),
+                    }
+                    );
+                DeleteItemCombo(item.Id);
+            }
+            await jsRumtime.InvokeVoidAsync("alert", "Thanh toán thành công");
+        }
+        catch (Exception ex)
+        {
+            await jsRumtime.InvokeVoidAsync("alert", "Thanh toán thất bại");
+            Console.WriteLine(ex);
+        }
+
+
+    }
+}
 
