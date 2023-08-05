@@ -1,4 +1,6 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inject ILocalStorageService LocalStorage
+@inject AuthenticationStateProvider AuthStateProvider
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">AppView</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -45,6 +47,21 @@
 
             </NavLink>
         </div>
+        <li class="dropdown-divider"></li>
+        <div class="nav-item px-3">
+            <AuthorizeView>
+                <NotAuthorized>
+                    <NavLink class="nav-link" href="Login">
+                        <span class="oi oi-account-login" aria-hidden="true"></span> Login
+                    </NavLink>
+                </NotAuthorized>
+                <Authorized>
+                    <NavLink class="nav-link" @onclick="Logout" style="cursor: pointer">
+                        <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
+                    </NavLink>
+                </Authorized>
+            </AuthorizeView>
+        </div>
     </nav>
 </div>
 
@@ -56,5 +73,11 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+    
+    private async void Logout()
+    {
+        await LocalStorage.RemoveItemAsync("Email");
+        await AuthStateProvider.GetAuthenticationStateAsync();
     }
 }

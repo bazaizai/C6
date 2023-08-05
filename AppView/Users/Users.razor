@@ -1,64 +1,65 @@
-﻿@page "/Users"
+﻿
+@page "/Users"
 @inject IUserServices UserServices
 
-<PageTitle>Users</PageTitle>
-
-<h3>Users</h3>
+@inject NavigationManager NavigationManager;
 
 @code {
-    private List<Users> users;
+
+    private List<User> users;
+
     protected override async Task OnInitializedAsync()
     {
-        List<AppData.Models.User> userList = await UserServices.GetAll();
-        users = userList.Select(u => new AppView.Users.Users
-        {
-            // Thực hiện chuyển đổi các thuộc tính từ User sang Users nếu cần thiết
-            // Ví dụ: Property1 = u.Property1, Property2 = u.Property2, ...
-        }).ToList();
+        users = (await UserServices.GetAll()).ToList();
     }
-    
-   
+    void Show(Guid id)
+    {
+        NavigationManager.NavigateTo($"/User/{id}");
+    }
+    async Task Delete(Guid id)
+    {
+        await UserServices.Delete(id);
+        NavigationManager.NavigateTo("User", forceLoad: true);
+    }
+    void Create()
+    {
+        NavigationManager.NavigateTo("/Create-User");
+    }
 }
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Role
-                </th>
-                <th>
-                    Ma
-                </th>
-                <th>
-                    Dia Chi
-                </th>
-                <th>
-                    SDT
-                </th>
-                <th>
-                    Mk
-                </th>
-                <th>
-                    Email
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-       @* @code {
-            private List<Users> users;
-
-            protected override async Task OnInitializedAsync()
-            {
-                //users = await UserServices.GetAll();
-            }
-        }*@
-        @foreach (var item in users)
+<button class="btn btn-primary mt-2" @onclick="Create">Create</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã</th>
+            <th>Tên</th>
+            <th>Chức vụ</th>
+            <th>Địa chỉ</th>
+            <th>Sdt</th>
+            <th>Email</th>
+            <th>Mật khẩu</th>
+        </tr>
+    </thead>
+    <tbody>
+         @if (users != null)
         {
-
+            @foreach (var item in users)
+            {
+                <tr>
+                    <td>@item.Ma</td>
+                    <td>@item.Ten</td>
+                    <td>@item.IdRole</td>
+                    <td>@item.DiaChi</td>
+                    <td>@item.Sdt</td>
+                    <th>@item.Email</th>
+                    <th>@item.MatKhau</th>
+                    <td>
+                        <button class="btn btn-primary" @onclick="(() => Show(item.Id))"><i class="oi oi-pencil"></i></button>
+                        <button class="btn btn-primary" @onclick="(() => Delete(item.Id))"><i class="oi oi-delete"></i></button>
+                    </td>
+                </tr>
             }
-        </tbody>
 
-    </table>
+        }
 
+    </tbody>
+</table>

@@ -1,11 +1,14 @@
 ﻿using AppData.Models;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Net;
+using System.Net.Http.Json;
 
 namespace AppView
 {
     public class UserServices : IUserServices
     {
+        //public HttpClient HttpClient;
         public async Task<bool> Add(User p)
         {
             var httpClient = new HttpClient();
@@ -86,5 +89,6 @@ namespace AppView
             var users = JsonConvert.DeserializeObject<List<User>>(apiData);
             return users;
         }
+        
     }
 }

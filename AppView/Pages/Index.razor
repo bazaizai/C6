@@ -1,2 +1,14 @@
 ﻿@page "/"
 <img src="~/img/icon-192.png" />
+
+
+@inject ISyncLocalStorageService LocalStorage
+
+<AuthorizeView>
+    <NotAuthorized>
+        <h1>Welcome to Mi Shop!</h1>
+    </NotAuthorized>
+    <Authorized>
+        <h1>Welcome back, @LocalStorage.GetItemAsString("Email")!</h1>
+    </Authorized>
+</AuthorizeView>

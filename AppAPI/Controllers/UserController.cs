@@ -2,6 +2,7 @@
 using AppData.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.InteropServices;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,12 +16,13 @@ namespace AppAPI.Controllers
         DBContextModel dbContextModel = new DBContextModel();
         DbSet<User> Users;
         public UserController()
-        {
+        {         
             Users = dbContextModel.Users;        
             Repo<User> all = new Repo<User>(dbContextModel, Users);    
             repos = all;
             
         }
+
         [HttpGet]
         public IEnumerable<User> GetAll()
         {
@@ -75,5 +77,7 @@ namespace AppAPI.Controllers
             return repos.GetAll().Where(c => c.Ten == name).ToList();
         }
 
+        
     }
+
 }
