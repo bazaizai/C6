@@ -8,5 +8,7 @@
         //}
         public static Guid idUser { get; set; }
         public static string Role { get; set; }
+        public static string TenUser { get; set; }
+
     }
 }

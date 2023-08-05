@@ -34,7 +34,7 @@
     private User users = new User();
     private bool loading;
 
-    private async void OnValidSubmit()
+    private async Task OnValidSubmit()
     {
 
         loading = true;
@@ -42,9 +42,10 @@
         if (iduser != null)
         {
             var role = await roleServices.GetByID(iduser.IdRole);
-            NavigationManager.NavigateTo("/");
             Extension.idUser = iduser.Id;
             Extension.Role = role.Ten;
+            Extension.TenUser = iduser.Ten;
+            NavigationManager.NavigateTo("/index");
             StateHasChanged();
         }
         else

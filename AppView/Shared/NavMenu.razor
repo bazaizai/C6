@@ -1,6 +1,6 @@
 ﻿<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">AppView</a>
+        <a class="navbar-brand" href="">Quản Trị</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -15,11 +15,6 @@
                     <span class="oi oi-home" aria-hidden="true"></span> Home
                 </NavLink>
             </div>
-            <div class="nav-item px-3">
-                <button class="nav-link" @onclick="Dangxuat">
-                    <span class="oi oi-plus" aria-hidden="true" ></span> Đăng xuất
-                </button>
-            </div>
 
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="productDetails">
@@ -27,8 +22,6 @@
                     <span class="oi oi-plus" aria-hidden="true"></span> ProductDetail
                 </NavLink>
             </div>
-            @if (Extension.Role == "admin")
-            {
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="Users">
 
@@ -48,7 +41,7 @@
 
                     </NavLink>
                 </div>
-            }
+            
             
         </nav>
     </div>
