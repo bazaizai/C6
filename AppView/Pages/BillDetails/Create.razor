@@ -1,0 +1,49 @@
+﻿@page "/create-BillDT"
+@inject NavigationManager NavigationManager;
+@inject IBillDetailsServices _iBillDetailsServices;
+<h3>Create BillDetails</h3>
+
+<EditForm Model="@billDetail" OnValidSubmit="@CreateBillDetails">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="IdBill">Bill:</label>
+        <InputText id="IdBill" class="form-control" @bind-Value="@idBillString" />
+    </div>
+    <div class="form-group">
+        <label for="IdProduct">Product:</label>
+        <InputText id="IdProductDetail" class="form-control" @bind-Value="@idProductString" />
+    </div>
+    <div class="form-group">
+        <label for="IdCombo">Combo:</label>
+        <InputText id="IdCombo" class="form-control" @bind-Value="@idComboString" />
+    </div>
+    <div class="form-group">
+        <label for="SoLuong">SoLuong:</label>
+        <InputNumber id="SoLuong" class="form-control" @bind-Value="@billDetail.SoLuong" />
+    </div>
+    <div class="form-group">
+        <label for="DonGia">DonGIa:</label>
+        <InputNumber id="DonGia" class="form-control" @bind-Value="@billDetail.DonGia" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</EditForm>
+
+@code {
+    private BillDetail billDetail = new BillDetail();
+    private string idBillString;
+    private string idProductString;
+    private string idComboString;
+
+    private async Task CreateBillDetails()
+    {
+        billDetail.IdBill = Guid.Parse(idBillString);
+        billDetail.IdProductDetail = Guid.Parse(idProductString);
+        billDetail.IdCombo = Guid.Parse(idComboString);
+        await _iBillDetailsServices.AddBilldetails(billDetail);
+        NavigationManager.NavigateTo("BillDetails");
+    }
+
+}

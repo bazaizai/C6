@@ -1,0 +1,765 @@
+﻿@media(max - width:1200px){
+	.theader.tlogo{
+    width: 70px;
+    }
+	.tmenu - home li a{
+        font - size: 14px;
+    }
+	.theader - button.location{
+    width: 120px;
+    }
+	.theader - button.location{
+    height: 41px;
+    }
+	.theader - button.location img{
+    width: 30px;
+    }
+	.theader - button.location p{
+    top: 2px;
+    left: 40px;
+    }
+	.theader - button.location p span{
+        font - size: 14px;
+    }
+
+	.tmenu - home li{
+    margin: 0px 24px 0 0;
+    }
+	.tmenu - home li: last - child{
+    margin: 46px 0 0 0;
+    }
+}
+@media(max - width:768px){
+	.tarticle table {
+    width: 100 % !important;
+    }
+	.tarticle iframe {
+    width: 100 %;
+    height: 250px;
+    }
+	.tarticle img { width: 100 % !important; height: auto!important }
+	.tbox - info - news - child img{
+    width: 100 % !important;
+    height: auto!important;
+    }
+	.tbox - info - news - child iframe{
+    width: 100 %;
+    height: 250px;
+    }
+	.ttitle - promotion{
+    margin: 20px 0px;
+        font - size:16px;
+    }
+
+	.order - item - content{
+        float: left;
+    margin: 30px auto;
+
+    }
+	.order - item - image img{
+        float: left;
+    width: 100 %;
+    }
+	.showWeb{
+    display: none;
+    }
+	.showWap{
+    display: block;
+    }
+	/*------------- HISTORY -------------*/
+	.tbox - slider.ttext - block{
+    left: 0;
+    bottom: 60px;
+    }
+	.tbox - slider.ttext - block.ttitle - slider - 1, .tbox - slider.ttext - block.ttitle - slider - 2{
+        text - align: center;
+    }
+	.timg - box - slider - 1.history{
+    margin: 70px 0 0 0;
+    }
+	.tbox - slider - 3.history, .tbox - slider - 3.history.tcontainer - text - block{
+    height: 240px;
+    }
+	.tbox - slider - 3.history.tarticle.tarticle - block.history{
+    top: 80px;
+    }
+	.tbox - slider - 3.history.tarticle.tarticle - block.history.ttitle - article{
+    margin: 0 0 60px 0;
+    }
+	.tbox - slider - 3.history.tarticle.tarticle - block.history.tcontent - article{
+    color: #444444;
+	}
+	.tbox - slider - 4.history, .tbox - slider - 4.history.tcontainer - text - block{
+    height: auto;
+    }
+	.tbox - slider - 4.history.tcontainer - text - block{
+        float: left;
+    margin: 0;
+    }
+	.tbox - slider - 3.history.tarticle.tbutton - article{
+    margin: 40px 0 60px 0;
+    }
+	.tbox - slider - 4.history.tarticle.ttitle - article{
+    margin: 30px 0;
+    }
+	.tbox - slider.history.tarticle - block{
+    position: relative;
+    left: 0;
+    top: 0;
+        float: left;
+    transform: none;
+        -webkit - transform: none;
+        -moz - transform: none;
+        -ms - transform: none;
+        -o - transform: none;
+    }
+	/*------------- INTRODUCE -------------*/
+	.timg - half - width.tabsolute{
+    position: relative;
+    }
+	.tarticle.tintroduce - 2{
+    width: calc(100 % -80px);
+    margin: 0 0 0 40px;
+    }
+	.timg - half - width -out-container{
+    width: 100 %;
+    margin: 30px 0;
+    }
+	.tbox - slider - 4.introduce, .tbox - slider - 4.introduce.tcontainer - text - block{
+    height: 456px;
+    }
+	.tbox - slider - 4.introduce.tcontainer - text - block{
+        float: left;
+    margin: 320px 0 0 0;
+    height: auto;
+    }
+	.tbox - slider - 4.introduce.tcontainer - text - block.tarticle - block{
+    position: relative;
+    left: 0;
+    top: 0;
+        float: left;
+    transform: none;
+        -webkit - transform: none;
+        -moz - transform: none;
+        -ms - transform: none;
+        -o - transform: none;
+    }
+	.tbox - slider - 4.introduce.tarticle.tarticle - block.introduce.tcontent - article{
+    color: #444444;
+	}
+	.tbox - slider - 4.introduce.tarticle.tarticle - block.introduce.ttitle - article{
+    margin: 0 0 60px 0;
+    }
+	/*------------- ORIGIN -------------*/
+	.tbox - slider - 2.origin, .tbox - slider - 3.origin, .tbox - slider - 4.origin, .tbox - slider - 5.origin, .tbox - slider - 6.origin{
+    background: none;
+    }
+	.tbox - slider.origin, .tbox - slider.origin.tcontainer - text - block{
+    height: auto;
+    }
+	.tbox - slider.origin.tarticle - block{
+    position: relative;
+        float: left;
+    left: 0;
+    top: 0;
+    transform: none;
+        -webkit - transform: none;
+        -moz - transform: none;
+        -ms - transform: none;
+        -o - transform: none;
+    margin: 30px 0;
+    }
+	.tbox - slider.origin.tarticle.tarticle - block.origin.ttitle - article{
+    color: #bd0017;
+	}
+	.tbox - slider.origin.tarticle.tarticle - block.origin.tcontent - article{
+    color: #444444;
+	}
+	.timg - half - width{
+    position: relative;
+    width: 100 %;
+    top: 0;
+        -webkit - transform: none;
+        -moz - transform: none;
+        -ms - transform: none;
+        -o - transform: none;
+    }
+	/*------------- PROVIDER -------------*/
+	.tbox - slider.provider, .tbox - slider.provider.tcontainer - text - block{
+    height: auto;
+    }
+	.tbox - slider.provider.tarticle - block{
+    position: relative;
+        float: left;
+    left: 0;
+    top: 0;
+    transform: none;
+        -webkit - transform: none;
+        -moz - transform: none;
+        -ms - transform: none;
+        -o - transform: none;
+    margin: 30px 0;
+    }
+	/*------------- SERVICE -------------*/
+	.tbox - slider.service, .tbox - slider.service.tcontainer - text - block{
+    height: auto;
+        min - height: auto;
+    }
+	.tbox - slider.service.tarticle - block{
+    position: relative;
+        float: left;
+    left: 0;
+    top: 0;
+    transform: none;
+        -webkit - transform: none;
+        -moz - transform: none;
+        -ms - transform: none;
+        -o - transform: none;
+    margin: 30px 0;
+    }
+	/*------------- NEWS -------------*/
+	.tline{
+    display: none;
+    }
+	.tarticle - news - child{
+        max - height: 100 %;
+    }
+	.tload - more - news{
+    width: 100 %;
+        float: left;
+    margin: 60px 0;
+    }
+	.tload - more - news.ticon - load - more{
+    display: block;
+    width: 100 %;
+    height: 48px;
+    background: url(.. / images / icon / icon - load - more.png) top center no - repeat;
+        background - size: contain;
+    }
+	.tload - more - news.tcaption - load - more{
+    width: 100 %;
+        text - align: center;
+        font - size: 16px;
+    color: #888888;
+		font - family: 'OpenSans-Light';
+    margin: 10px 0 0 0;
+    }
+	.timg - news - detal - main{
+    margin: 35px 0 0 0;
+    }
+	/*------------- NEWS DETAL -------------*/
+	.tarticle - news - child.trelated{
+    width: calc(50 % -10px);
+    margin: 0 0 12px 0;
+        float: left;
+    }
+	.tarticle - news - child.trelated:nth - child(even){
+    margin: 0 20px 12px 0;
+    }
+	/*------------- STORE -------------*/
+	.mapStore{
+    width: 100 %;
+    height: 488px;
+    margin: 0 0 0 0;
+    }
+	.tbox - find - store{
+    width: 100 %;
+    margin: 0 0 0 0;
+    height: auto;
+    }
+	.tbox - find - store.tbox - select{
+    margin: 20px 0 0 30px;
+    }
+	.tbox - find - store.tbox - select - 1{
+    margin: 20px 0 0 30px;
+    }
+	.tbox - submit{
+    margin: 57px 0 0 30px;
+    }
+	.tbox - full - service{
+        box - shadow: none;
+    height: auto;
+    }
+	.tbox - service {
+    width: 33.3333 %;
+        float: left;
+    margin: 30px 0 0 0;
+    }
+	.tbox - address - store{
+        min - height: 390px;
+    padding: 0 25px 15px 25px;
+    }
+	.tblock - contact - inmap - load {
+    width: 320px;
+    }
+	.tbox - address - store.ticon{
+    margin: 0 10px 10px 0;
+    }
+	.text - content - first{
+    top: unset;
+    bottom: 30px;
+    position: absolute;
+    left: 10 %;
+    color: #fff;
+	}
+	.text - content - first h2{
+        font - size: 16px;
+    }
+	.mc - cafe{
+    left: 25px;
+    }
+	.tbox - slider.tbox - banner - home - 3.tarticle - block{
+    width: 98 %;
+    left: 0;
+    overflow: hidden;
+    }
+	.tblock - contact - inmap{
+    top: 30 %;
+    left: 30px;
+    }
+	/*------------- COMBO -------------*/
+	.tbox - slider - 1.combo{
+    overflow: hidden;
+    }
+	.tbox - slider - 1.combo, .tbox - slider - 1.combo.tcontainer - text - block{
+    height: auto;
+    margin: 80px 0 0 0;
+    padding: 0;
+    }
+	.tbox - slider - 1.combo.tcontainer - text - block.tarticle - block{
+    position: relative;
+        float: left;
+    height: auto;
+    left: 15px;
+    top: 0;
+    width: calc(100 % -15px);
+    transform: none;
+        -webkit - transform: none;
+        -moz - transform: none;
+        -ms - transform: none;
+        -o - transform: none;
+    }
+	.ttitle - head - combo - 1, .ttitle - head - combo - 2, .tcaption - head - combo - 2{
+        text - align: center;
+    }
+	.ttitle - btn - mc - delivery, .ttitle - btn - mc - delivery:hover{
+    margin: 0 0 66px 50 %;
+    transform: translateX(-50 %);
+        -webkit - transform: translateX(-50 %);
+        -moz - transform: translateX(-50 %);
+        -ms - transform: translateX(-50 %);
+        -o - transform: translateX(-50 %);
+
+    }
+	.tbox - item - middle.tlist - food{
+    width: 50 %;
+        float: left;
+    }
+	.owl - carousel.tcombo.owl - drag.owl - item:hover.tbutton - food - combo - carousel, .tbox - item - middle:hover.tbutton - food - combo - carousel{
+    display: none;
+    }
+	.owl - carousel.tcombo.owl - drag.owl - prev{
+    left: -16px;
+    }
+	.owl - carousel.tcombo.owl - drag.owl - next{
+    right: -16px;
+    }
+	.owl - carousel.tcombo - material.owl - drag.owl - next{
+    height: 40px;
+    width: 30px;
+    position: absolute;
+    top: 60px;
+    right: -16px;
+    background: url('../images/icon/arrow_right.png') top center no - repeat;
+        background - size: contain;
+    color: transparent;
+    }
+	.owl - carousel.tcombo - material.owl - drag.owl - prev{
+    height: 40px;
+    width: 30px;
+    position: absolute;
+    top: 60px;
+    left: -16px;
+    background: url('../images/icon/arrow_left.png') top center no - repeat;
+        background - size: contain;
+    color: transparent;
+    }
+
+	.theader - wap{
+    width: 100 %;
+    height: 70px;
+        background - color: #191919;
+		position: fixed;
+        left: 0;
+    top: 0;
+        z - index: 10;
+    }
+	.theader - wap.tlogo{
+    width: 60px;
+    height: auto;
+    position: absolute;
+    left: 24px;
+    top: 0;
+        z - index: 999;
+    }
+	.theader - button{
+    margin: 20px 100px 0 0;
+    }
+	.tmenu - home - wap{
+    width: 480px;
+    position: fixed;
+        top: 70px;
+    right: 0;
+    bottom: 0;
+        background - color: #191919;
+	    padding: 0;
+    margin: 0;
+    overflow: auto;
+        z - index: 99;
+    display: none;
+    }
+	.tmenu - home - wap ul, .tmenu - home - wap li{
+    margin: 0;
+    padding: 0;
+    }
+	.tmenu - home - wap li{
+        list - style: none;
+    width: 100 %;
+        float: left;
+        border - bottom: 1px solid #999;
+		position: relative;
+    padding: 20px 0px 20px 30px;
+    }
+	.tmenu - home - wap li a{
+        text - decoration: none;
+    color: #ffffff;
+		font - family: 'OpenSans-Light';
+        line - height: 1.34;
+    }
+	.tmenu - home - wap li.menu - parent a{
+        font - size: 20px;
+    display: inline - block;
+    }
+	.tmenu - home - wap li.menu - child{
+        list - style: none;
+    width: 100 %;
+        float: left;
+        border - bottom: 1px solid #999;
+		padding: 10px 0px 10px 30px;
+    }
+	.tmenu - home - wap li.menu - child a{
+        font - size: 16px;
+    display: inline - block;
+    }
+	.tmenu - home - wap.menu - parent - 2.tarrow, .tmenu - home - wap.menu - parent - 3.tarrow{
+    width: 16px;
+    height: 30px;
+    transform: rotate(-90deg);
+        -webkit - transform: rotate(-90deg);
+        -moz - transform: rotate(-90deg);
+        -ms - transform: rotate(-90deg);
+        -o - transform: rotate(-90deg);
+    background: url('../images/icon/ic-arrow.png') top center no - repeat;
+        background - size: contain;
+    position: absolute;
+    right: 10px;
+    top: 18px;
+    display: block;
+    }
+	.tmenu - home - wap.menu - parent - 2.active.tarrow, .tmenu - home - wap.menu - parent - 3.active.tarrow{
+    right: 24px;
+    top: 30px;
+    transform: none;
+        -webkit - transform: none;
+        -moz - transform: none;
+        -ms - transform: none;
+        -o - transform: none;
+    }
+	.theader - wap.ic - menu{
+    display: block;
+    width: 80px;
+    height: 80px;
+    background: url('../images/icon/menu.png') center center no - repeat;
+        background - size: 40px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    }
+	.theader - wap.ic - menu.active{
+    background: url('../images/icon/close.png') center center no - repeat;
+        background - size: 40px;
+    }
+	.logo - search - footer{
+    width: 100 %;
+        float: left;
+    }
+	.logo - search - footer a{
+        float: right;
+    }
+	.tbox - daily, .tbox - hear{
+    width: 50 %;
+        float: left;
+    }
+	.slider{
+    margin: 70px 0 0 0;
+    }
+	.slider - new
+     {
+         margin: 100px 0 0 0;
+}
+	.tfooter.copyright p
+{
+    text-align: center;
+}
+	.tmobile - padd - top{
+    padding - top: 30px;
+}
+	.tsingle - menu - page - mobile{
+width: 33.3333 %;
+    float: left;
+}
+# slider-full-page-mobile .owl-prev, #slider-full-page-mobile .owl-next{
+display: none;
+	}
+	.vorder - tabs ul, .vorder-tabs li{
+		height: 40px;
+	}
+	.vorder - tabs li a
+{
+    font-size: 16px;
+    margin: 6px 0 0 0;
+}
+	.tcontainer - menu - page{
+width: 100 %;
+}
+	.vorder - tabs li.tarrow - menu - page{
+bottom: -8px;
+}
+	.tcontainer - content - banner - home{
+width: 100 %;
+top: 50 %;
+transform: translate(0, -50 %);
+    -webkit - transform: translate(0, -50 %);
+    -moz - transform: translate(0, -50 %);
+    -ms - transform: translate(0, -50 %);
+    -o - transform: translate(0, -50 %);
+left: 0;
+
+}
+	.slide - caption.tcap1{
+    font - size: 30px;
+}
+	.slide - caption.tcap2{
+    font - size: 56px;
+}
+	.slide - caption.torder - now - index, .slide - caption.torder - now - index:hover {
+	    width: 170px;
+background: #FFC836;
+	    float: left;
+border - radius: 30px;
+color: #191919;
+	    text - align: center;
+font - size: 12px;
+text - transform: uppercase;
+font - family: OpenSans - SemiBold;
+padding: 10px 0;
+margin: 0 0 0 calc(50 % -85px);
+	}
+	.tcapcha img
+{
+    width: 100%;
+}
+}
+@media(max - width:600px){
+	.tblock - contact - inmap{
+    width: calc(100 % -30px);
+    left: 15px;
+    }
+	.tblock - contact - inmap.tcap - place{
+        font - size: 16px;
+    margin: 0;
+    }
+	.tblock - contact - inmap.tcap - place - detail{
+        font - size: 12px;
+    margin: 0;
+    }
+}
+@media(max - width:568px){
+	.slide - caption.tcap1{
+        font - size: 20px;
+    }
+	.slide - caption.tcap2{
+        font - size: 30px;
+    }
+	.slide - caption.torder - now - index, .slide - caption.torder - now - index:hover{
+    width: 100px;
+        font - size: 8px;
+    padding: 6px 0;
+    margin: 0 0 0 calc(50 % -50px);
+    }
+}
+@media(max - width:480px){
+	.owl - carousel.tcombo.owl - drag.owl - item, .tbox - item - middle.tlist - food{
+    height: 260px;
+    }
+	.owl - carousel.tcombo.owl - drag.owl - next, .owl - carousel.tcombo.owl - drag.owl - prev{
+    top: 70px;
+    height: 40px;
+    }
+	.owl - carousel.tcombo - material.owl - drag.owl - prev, .owl - carousel.tcombo - material.owl - drag.owl - next{
+    top: 30px;
+    }
+	.tmenu - home - wap{
+    width: 100 %;
+    }
+	.theader - button{
+    transform: scale(0.8);
+        -webkit - transform: scale(0.8);
+        -moz - transform: scale(0.8);
+        -ms - transform: scale(0.8);
+        -o - transform: scale(0.8);
+    }
+	.tnone - padding - home{
+    padding: 30px 0 0 0!important;
+    }
+	.tbox - daily, .tbox - hear{
+    width: 100 %;
+        float: left;
+    }
+	.tbox - hear{
+    margin: 0 0 30px 0;
+    }
+	.logo - search - footer a {
+        float: left;
+    }
+	.tbox - slider - 1.combo.tcontainer - text - block.tarticle - block{
+    width: 100 %;
+    left: 0;
+    }
+# slider-full-page .owl-dots, #slider-full-page-mobile .owl-dots{
+bottom: 6px;
+}
+# slider-full-page .owl-dot, #slider-full-page-mobile .owl-dot{
+width: 10px;
+height: 10px;
+	}
+	.slide - caption.tcap1{
+    font - size: 16px;
+}
+	.slide - caption.tcap2{
+    font - size: 30px;
+}
+}
+@media(max - width:414px){
+	.tarticle.ttitle - article{
+        font - size: 30px;
+    }
+	.tarticle.tintroduce - 2 {
+    width: calc(100 % -60px);
+    margin: 0 0 0 30px;
+    }
+	.tbox - slider.ttext - block.ttitle - slider - 1{
+        font - size: 20px;
+    }
+	.tbox - slider.ttext - block.ttitle - slider - 2{
+        font - size: 40px;
+    }
+	.tbox - slider - 3.history.tarticle.tbutton - article {
+    margin: 40px 0 100px 0;
+    }
+	.tbox - clean {
+    width: calc(50 % -8px);
+    }
+	.tbox - find - store.tbox - select {
+    width: calc(100 % -60px);
+    }
+	.theader - button{
+    margin: 15px 10px 0 0;
+    transform: scale(0.7);
+        -webkit - transform: scale(0.7);
+        -moz - transform: scale(0.7);
+        -ms - transform: scale(0.7);
+        -o - transform: scale(0.7);
+    }
+	.tfooter.col - md - 3.col - sm - 4{
+    width: 50 %;
+        float: left;
+    }
+	.theader - wap.ic - menu{
+    display: block;
+    width: 30px;
+    height: 70px;
+    background: url('../images/icon/menu.png') center center no - repeat;
+        background - size: 30px;
+    position: absolute;
+    right: 8px;
+    top: 0;
+    }
+	.theader - wap.ic - menu.active{
+    background: url('../images/icon/close.png') center center no - repeat;
+        background - size: 30px;
+    }
+	.tname - food - combo - carousel{
+        font - size: 14px;
+    }
+	.vorder - tabs li a{
+        font - size: 14px;
+    margin: 8px 0 0 0;
+    }
+	.ttitle - banner - home - 1{
+        font - size: 30px;
+    }
+	.tsub - title - banner - home - 1{
+        font - size: 14px;
+    }
+}
+@media(max - width:375px){
+	.slide - caption.tcap1{
+        font - size: 12px;
+    }
+	.slide - caption.tcap2{
+        font - size: 20px;
+    }
+	.slide - caption.torder - now - index, .slide - caption.torder - now - index:hover{
+    width: 80px;
+        font - size: 6px;
+    padding: 6px 0;
+    margin: 0 0 0 calc(50 % -40px);
+    }
+	.text - content - first {
+    top: 15 % !important;
+    }
+	.tcontainer - content - banner - home{
+    top: 4px;
+    left: 0;
+    transform: none;
+        -webkit - transform: none;
+        -moz - transform: none;
+        -ms - transform: none;
+        -o - transform: none;
+    }
+}
+@media(max - width:320px){
+	.theader - wap{
+    height: 60px;
+    }
+	.theader - wap.tlogo{
+    width: 66px;
+    }
+	.theader - button{
+    margin: 10px 10px 0 0;
+    }
+	.theader - wap.ic - menu{
+    height: 60px;
+    }
+	.slider{
+    margin: 60px 0 0 0;
+    }
+	.slider - new
+     {
+         margin: 60px 0 0 0;
+}
+	.tmenu - home - wap{
+top: 60px;
+}
+}

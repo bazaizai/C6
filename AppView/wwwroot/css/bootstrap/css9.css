@@ -1,0 +1,383 @@
+﻿/**
+ * Owl Carousel v2.2.1
+ * Copyright 2013-2017 David Deutsch
+ * Licensed under  ()
+ */
+/*
+ *  Owl Carousel - Core
+ */
+.owl - carousel {
+display: none;
+width: 100 %;
+    -webkit - tap - highlight - color: transparent;
+/* position relative and z-index fix webkit rendering fonts issue */
+position: relative;
+    z - index: 1;
+}
+  .owl - carousel.owl - stage {
+position: relative;
+    -ms - touch - action: pan - Y;
+    -moz - backface - visibility: hidden;
+    /* fix firefox animation glitch */
+}
+  .owl - carousel.owl - stage:after {
+    content: ".";
+display: block;
+clear: both;
+visibility: hidden;
+line - height: 0;
+height: 0; }
+  .owl - carousel.owl - stage - outer {
+position: relative;
+overflow: hidden;
+    /* fix for flashing background */
+    -webkit - transform: translate3d(0px, 0px, 0px);
+}
+  .owl - carousel.owl - wrapper,
+  .owl - carousel.owl - item {
+    -webkit - backface - visibility: hidden;
+    -moz - backface - visibility: hidden;
+    -ms - backface - visibility: hidden;
+    -webkit - transform: translate3d(0, 0, 0);
+    -moz - transform: translate3d(0, 0, 0);
+    -ms - transform: translate3d(0, 0, 0);
+}
+  .owl - carousel.owl - item {
+position: relative;
+    min - height: 1px;
+    float: left;
+    -webkit - backface - visibility: hidden;
+    -webkit - tap - highlight - color: transparent;
+    -webkit - touch - callout: none;
+}
+  .owl - carousel.owl - item img {
+    display: block;
+width: 100 %; }
+  .owl - carousel.owl - nav.disabled,
+  .owl - carousel.owl - dots.disabled {
+    /*display: none;*/
+}
+  .owl - carousel.owl - nav.owl - prev,
+  .owl - carousel.owl - nav.owl - next,
+  .owl - carousel.owl - dot {
+cursor: pointer;
+cursor: hand;
+    -webkit - user - select: none;
+    -khtml - user - select: none;
+    -moz - user - select: none;
+    -ms - user - select: none;
+    user - select: none;
+}
+    .sn_search_returns_list_album.show_slider.owl - carousel.owl - nav.owl - next, .sn_search_returns_list_album.show_slider.owl - carousel.owl - nav.owl - prev, .sn_search_returns_list_video.show_slider_v.owl - carousel.owl - nav.owl - next, .sn_search_returns_list_video.show_slider_v.owl - carousel.owl - nav.owl - prev{
+width: 40px;
+height: 40px;
+position: absolute;
+    border - radius: 50 %;
+    -webkit - border - radius: 50 %;
+    -moz - border - radius: 50 %;
+    -ms - border - radius: 50 %;
+    -o - border - radius: 50 %;
+color: transparent;
+overflow: hidden;
+    box - shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.5);
+    -webkit - box - shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.5);
+    -moz - box - shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.5);
+    -ms - box - shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.5);
+    -o - box - shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.5);
+}
+    .sn_search_returns_list_album.show_slider.owl - carousel.owl - nav.owl - prev, .sn_search_returns_list_video.show_slider_v.owl - carousel.owl - nav.owl - prev{
+background: url(.. / images / sn_ic_pre.png) 17px 13px no-repeat;
+    background - color: #ffffff;
+      top: 55px;
+left: -20px;
+}
+    .sn_search_returns_list_album.show_slider.owl - carousel.owl - nav.owl - next, .sn_search_returns_list_video.show_slider_v.owl - carousel.owl - nav.owl - next{
+background: url(.. / images / sn_ic_next.png) 17px 13px no-repeat;
+    background - color: #ffffff;
+      top: 55px;
+right: -20px;
+}
+    .sn_search_returns_list_video.show_slider_v.owl - carousel.owl - nav.owl - prev, .sn_search_returns_list_video.show_slider_v.owl - carousel.owl - nav.owl - next{
+top: 35px;
+}
+  .owl - carousel.owl - loaded {
+display: block;
+}
+  .owl - carousel.owl - loading {
+opacity: 0;
+display: block;
+}
+  .owl - carousel.owl - hidden {
+opacity: 0;
+}
+  .owl - carousel.owl - refresh.owl - item {
+visibility: hidden;
+}
+  .owl - carousel.owl - drag.owl - item {
+    -webkit - user - select: none;
+    -moz - user - select: none;
+    -ms - user - select: none;
+    user - select: none;
+}
+  .owl - carousel.owl - grab {
+cursor: move;
+cursor: grab;
+}
+  .owl - carousel.owl - rtl {
+direction: rtl;
+}
+  .owl - carousel.owl - rtl.owl - item {
+    float: right;
+}
+
+/* No Js */
+.no - js.owl - carousel {
+display: block;
+}
+
+/*
+ *  Owl Carousel - Animate Plugin
+ */
+.owl - carousel.animated {
+    animation - duration: 1000ms;
+    animation - fill - mode: both;
+}
+
+.owl - carousel.owl - animated -in {
+    z - index: 0;
+}
+
+.owl - carousel.owl - animated -out {
+    z - index: 1;
+}
+
+.owl - carousel.fadeOut {
+    animation - name: fadeOut;
+}
+
+@keyframes fadeOut
+{
+  0% {
+    opacity: 1;
+    }
+  100% {
+    opacity: 0;
+    }
+}
+
+/*
+ * 	Owl Carousel - Auto Height Plugin
+ */
+.owl - height {
+transition: height 500ms ease-in-out;
+}
+
+/*
+ * 	Owl Carousel - Lazy Load Plugin
+ */
+.owl - carousel.owl - item.owl - lazy {
+opacity: 0;
+transition: opacity 400ms ease;
+}
+
+.owl - carousel.owl - item img.owl - lazy {
+    transform - style: preserve - 3d;
+}
+
+/*
+ * 	Owl Carousel - Video Plugin
+ */
+.owl - carousel.owl - video - wrapper {
+position: relative;
+height: 100 %;
+background: #000; }
+
+.owl - carousel.owl - video - play - icon {
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    left: 50 %;
+    top: 50 %;
+        margin - left: -40px;
+        margin - top: -40px;
+    background: url("owl.video.play.png") no - repeat;
+    cursor: pointer;
+        z - index: 1;
+        -webkit - backface - visibility: hidden;
+    transition: transform 100ms ease;
+    }
+
+.owl - carousel.owl - video - play - icon:hover {
+        -ms - transform: scale(1.3, 1.3);
+    transform: scale(1.3, 1.3);
+    }
+
+.owl - carousel.owl - video - playing.owl - video - tn,
+.owl - carousel.owl - video - playing.owl - video - play - icon {
+    display: none;
+    }
+
+.owl - carousel.owl - video - tn {
+    opacity: 0;
+    height: 100 %;
+        background - position: center center;
+        background - repeat: no - repeat;
+        background - size: contain;
+    transition: opacity 400ms ease;
+    }
+
+.owl - carousel.owl - video - frame {
+    position: relative;
+        z - index: 1;
+    height: 100 %;
+    width: 100 %;
+    }
+
+body{
+    background: #ddd;
+    min-height: 100vh;
+    vertical-align: middle;
+    display: flex;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.title{
+    margin-bottom: 5vh;
+}
+.card{
+    margin: auto;
+    max-width: 950px;
+    width: 90%;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent;
+}
+@media(max-width:767px){
+    .card{
+        margin: 3vh auto;
+    }
+}
+.cart{
+    background-color: #fff;
+    padding: 4vh 5vh;
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem;
+}
+@media(max-width:767px){
+    .cart{
+        padding: 4vh;
+        border-bottom-left-radius: unset;
+        border-top-right-radius: 1rem;
+    }
+}
+.summary{
+    background-color: #ddd;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: 4vh;
+    color: rgb(65, 65, 65);
+}
+@media(max-width:767px){
+    .summary{
+    border-top-right-radius: unset;
+    border-bottom-left-radius: 1rem;
+    }
+}
+.summary .col-2{
+    padding: 0;
+}
+.summary .col-10
+{
+    padding: 0;
+}.row{
+    margin: 0;
+}
+.title b{
+    font-size: 1.5rem;
+}
+.main{
+    margin: 0;
+    padding: 2vh 0;
+    width: 100%;
+}
+.col-2, .col{
+    padding: 0 1vh;
+}
+a{
+    padding: 0 1vh;
+}
+.close{
+    margin-left: auto;
+    font-size: 0.7rem;
+}
+img{
+    width: 3.5rem;
+}
+.back-to-shop{
+    margin-top: 4.5rem;
+}
+h5{
+    margin-top: 4vh;
+}
+hr{
+    margin-top: 1.25rem;
+}
+form{
+    padding: 2vh 0;
+}
+select{
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1.5vh 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+input{
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+input:focus::-webkit-input-placeholder
+{
+      color:transparent;
+}
+.btn{
+    background-color: #000;
+    border-color: #000;
+    color: white;
+    width: 100%;
+    font-size: 0.7rem;
+    margin-top: 4vh;
+    padding: 1vh;
+    border-radius: 0;
+}
+.btn:focus{
+    box-shadow: none;
+    outline: none;
+    box-shadow: none;
+    color: white;
+    -webkit-box-shadow: none;
+    -webkit-user-select: none;
+    transition: none; 
+}
+.btn:hover{
+    color: white;
+}
+a{
+    color: black; 
+}
+a:hover{
+    color: black;
+    text-decoration: none;
+}
+ #code{
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253) , rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: center;
+}

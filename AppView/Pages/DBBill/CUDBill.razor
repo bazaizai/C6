@@ -1,0 +1,95 @@
+﻿@page "/bill"
+@page "/bill/{id}"
+@inject IBillServices billservices
+@inject IUserServices userServices
+@inject NavigationManager navigationManager
+
+@if (Id == null)
+{
+    <PageTitle>Create a new Bill</PageTitle>
+    <h3>Create a new Bill</h3>
+}
+else
+{
+    <PageTitle>Edit Bill</PageTitle>
+    <h3>Edit Bill</h3>
+}
+
+<EditForm Model="bills" OnSubmit="HandleSubmit">
+    <div>
+        <label for="Ma">Ma</label>
+        <InputText id="Ma" @bind-Value="bills.Ma" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="DiaChi">DiaChi</label>
+        <InputText id="DiaChi" @bind-Value="bills.DiaChi" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="sdt">sdt</label>
+        <InputText id="sdt" @bind-Value="bills.Sdt" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="tien">tien</label>
+        <InputNumber id="tien" @bind-Value="bills.TienShip" class="form-control"></InputNumber>
+    </div>
+    <div>
+        <label>Tennv</label><br />
+        <InputSelect @bind-Value="bills.IdUser" class="form-select">
+            @foreach (var comic in users)
+            {
+                <option value="@comic.Id">@comic.Ten</option>
+            }
+        </InputSelect>
+    </div>
+    <div>
+        <label for="ngaytao">ngaytao</label>
+        <InputDate id="ngaytao" @bind-Value="bills.NgayTao" class="form-control"></InputDate>
+    </div>
+    <div>
+        <label for="ngaythanhtoan">ngaythanhtoan</label>
+        <InputDate id="ngaythanhtoan" @bind-Value="bills.NgayThanhToan" class="form-control"></InputDate>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">@btnText</button>
+    @if (Id != null)
+    {
+        <button type="button" class="btn btn-danger" @onclick="DeleteHero">Delete Hero</button>
+    }
+</EditForm>
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private Bill bills = new Bill();
+
+    string btnText = string.Empty;
+    private List<User> users = new List<User>();
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = Id == null ? "Save New Role" : "Update Role";
+        bills = Id == null ? new Bill() : await billservices.GetBillByKey(Guid.Parse(Id));
+        users = await userServices.GetAll();
+    }
+
+    async Task HandleSubmit()
+    {
+        if (Id == null)
+        {
+            await billservices.AddBill(bills);
+            navigationManager.NavigateTo("bills");
+        }
+        else
+        {
+            await billservices.UpdateBill(bills);
+            navigationManager.NavigateTo("bills");
+        }
+    }
+
+    async Task DeleteHero()
+    {
+        await billservices.DeleteBill(Guid.Parse(Id));
+        navigationManager.NavigateTo("bills");
+    }
+}
+

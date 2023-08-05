@@ -1,0 +1,54 @@
+﻿@page "/bills"
+@inject IBillServices billservices
+@inject NavigationManager navigationManager
+<h3>BillList</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ma</th>
+            <th>NgayTao</th>
+            <th>NgayThanhToan</th>
+            <th>Tien</th>
+            <th>Ten User</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (bills!=null)
+        {
+            @foreach (var item in bills)
+            {
+                <tr>
+                    <td>@item.Ma</td>
+                    <td>@item.NgayTao</td>
+                    <td>@item.NgayThanhToan</td>
+                    <td>@item.TienShip</td>
+                    <td>@item.TenNV</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="(() => ShowBill(item.Id))"><i class="oi oi-pencil"></i></button>
+                    </td>
+                </tr>
+            }
+        }
+        
+    </tbody>
+</table>
+<button class="btn btn-primary" @onclick="CreateNewBill">Create New Bill</button>
+
+
+@code {
+    private List<BillViewModel> bills = new List<BillViewModel>();
+    protected override async Task OnInitializedAsync()
+    {
+        bills = await billservices.GetBill();
+    }
+    void ShowBill(Guid id)
+    {
+        navigationManager.NavigateTo($"bill/{id}");
+    }
+
+    void CreateNewBill()
+    {
+        navigationManager.NavigateTo("/bill");
+    }
+}
