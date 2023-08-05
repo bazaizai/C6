@@ -1,8 +1,7 @@
 ﻿@page "/productDetails"
 @inject IProductDetailService _IProductDetail
 @inject NavigationManager navigationManager
-@inject IProductDetailService _productDetailService 
-<h3>Component</h3>
+@inject IProductDetailService _productDetailService
 
 @code {
     private List<ProductDetail> _lstProductDetail;
@@ -16,12 +15,12 @@
     }
     private void Create()
     {
-        navigationManager.NavigateTo("/products/crud"); 
+        navigationManager.NavigateTo("/products/crud");
     }
-     private void DeleteProduct(Guid id)
+    private void DeleteProduct(Guid id)
     {
         _productDetailService.DeleteById(id);
-        navigationManager.NavigateTo("/productDetails",forceLoad:true);
+        navigationManager.NavigateTo("/productDetails", forceLoad: true);
     }
 }
 <h1>Create</h1>

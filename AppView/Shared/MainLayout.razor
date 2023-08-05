@@ -1,17 +1,173 @@
 ﻿@inherits LayoutComponentBase
-
+@inject NavigationManager navigationManager
+@code
+{
+    void index()
+    {
+        navigationManager.NavigateTo($"/index");
+    }
+}
+<head>
+    <!-- BASICS -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow,noarchive">
+    <meta http-equiv="X-Frame-Options" content="deny">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>Món Ăn Nhẹ - McDonald's™ Vietnam</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="icon" type="image/png" href="public/images/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="https://mcdonalds.vn/">
+    <link rel="stylesheet" href="css/bootstrap/css1.css">
+    <link rel="stylesheet" href="css/bootstrap/css2.css">
+    <link rel="stylesheet" href="css/bootstrap/css3.css">
+    <link rel="stylesheet" href="css/bootstrap/css4.css">
+    <link rel="stylesheet" href="css/bootstrap/css5.css">
+    <link rel="stylesheet" href="css/bootstrap/css6.css">
+    <link rel="stylesheet" href="css/bootstrap/css7.css">
+    <link rel="stylesheet" href="css/bootstrap/css8.css">
+</head>
 <div class="page">
     <div class="sidebar">
         <NavMenu />
     </div>
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
+        @*Navbar*@
+        <section class="showWeb theader">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 tbox-unset">
+                        <img class="tlogo" src="Image/logo-mcdonalds.png" alt="">       <a href="">
+                        </a>
+                        <ul class="tmenu-home">
+                            <li><a style="color:yellow" @onclick="(() => index())">Trang chủ</a></li>
 
-        <article class="content px-4">
+                            <li class="tmenu3">
+                                <a href="thuc-don" class="active-menu">Thực đơn</a>
+                                <div class="menu-hover-3">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-3">
+                                                    <ul class="tbox-menu-list-foods">
+                                                        <li class="tmenu-list-foods">
+                                                            Món ăn
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ul class="tbox-menu-list-foods">
+                                                        <li class="tmenu-list-foods">
+                                                            Combo
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ul class="tbox-menu-list-foods">
+                                                        <li class="tmenu-list-foods">
+                                                            Đồ ăn hot
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <input type="text" name="q" placeholder="Tìm kiếm">
+                            </li>
+
+                        </ul>
+                        <div class="theader-button">
+                            <a class="location" href="#">
+                                <p>Đăng nhập<br><span>(Tên sau khi login)</span></p>
+                            </a>
+                            <a class="location delivery" href="# target="_blank">
+                                <p>Đăng xuất<br><span>(Tên sau khi đăng xuất)</span></p>
+                            </a>
+                            <a class="location" href="#">
+                                <p>Giỏ hàng<br><span></span></p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <article class="content">
             @Body
         </article>
+        @*Footer*@
+        <section class="tfooter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="line"></div>
+                        <div class="col-md-3 col-sm-4">
+                            <ul>
+                                <li class="parent">Tìm hiểu</li>
+                                <li><a href="">Lịch sử McDonald's</a></li>
+                                <li><a href="">Giới thiệu McDonald's Việt Nam</a></li>
+                                <li><a href="">Xuất xứ</a></li>
+                                <li><a href="">Nhà cung cấp</a></li>
+                                <li><a href="">Dịch vụ</a></li>
+                                <li><a href="">An toàn thực phẩm</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-4">
+                            <ul>
+                                <li class="parent">Cơ hội nghề nghiệp</li>
+                                <li><a href="" target="_blank">Thông tin tuyển dụng</a></li>
+                            </ul>
+                            <ul class="showWap">
+                                <li class="parent">Chính sách</li>
+                                <li><a href="">Các câu hỏi thường gặp</a></li>
+                                <li><a href="">Điều khoản và Điều kiện</a></li>
+                                <li><a href="">Chính sách về quyền riêng tư</a></li>
+                            </ul>
+                        </div>
+                        <div class="showWeb col-md-3">
+                            <ul>
+                                <li class="parent">Chính sách</li>
+                                <li><a href="">Các câu hỏi thường gặp</a></li>
+                                <li><a href="">Điều khoản và Điều kiện</a></li>
+                                <li><a href="">Chính sách về quyền riêng tư</a></li>
+                                <li class="parent">Ngôn ngữ</li>
+                                <li>
+                                    <a href="en/" style="width: 32px; margin-right:5px;"><img class="flags" src="public/images/icon/united-states.png" alt="" pagespeed_url_hash="2250673887" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" /></a>
+                                    <a href="vi/" style="width: 32px;"><img class="flags" src="public/images/icon/vietnam.png" alt="" pagespeed_url_hash="3280284639" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" /></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <ul class="showWap">
+                                <li class="parent">Ngôn ngữ</li>
+                                <li>
+                                    <a href="en/" style="width: 32px; margin-right:5px;"><img class="flags" src="public/images/icon/united-states.png" alt="" pagespeed_url_hash="2250673887" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" /></a>
+                                    <a href="vi/" style="width: 32px;"><img class="flags" src="public/images/icon/vietnam.png" alt="" pagespeed_url_hash="3280284639" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" /></a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="parent">Liên hệ với chúng tôi</li>
+                                <li><a href="lien-he">Liên hệ</a></li>
+                                <li><a href="https://gbwsurvey.com/ws/furl-mcdvn" target="_blank">Phản hồi chất lượng dịch vụ</a></li>
+                                <a href="https://www.facebook.com/McDonaldsVN/" target="_blank"><img class="social" src="/uploads/2018/icon/facebook.png" alt="" pagespeed_url_hash="433363267" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" /></a>
+                                <a href="https://www.instagram.com/mcdonaldsvn/" target="_blank"><img class="social" src="/uploads/2018/icon/instagram.png" alt="" pagespeed_url_hash="2692370131" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" /></a>
+                                <a href="https://www.youtube.com/user/McDonaldsVN/featured" target="_blank"><img class="social" src="/uploads/2018/icon/youtube.png" alt="" pagespeed_url_hash="3166646352" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" /></a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="container">
+                    <div class="row"><p>©2017-2018 McDonald's. All Rights Reserved.</p></div>
+                </div>
+            </div>
+        </section>
     </main>
 </div>
