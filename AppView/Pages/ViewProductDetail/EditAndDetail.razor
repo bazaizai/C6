@@ -1,4 +1,6 @@
 ﻿@page "/products/detail/{id}"
+@inject IProductDetailService _productService
+
 @using AppView.IServices;
 
 <h3>@(isEditing ? "Cập nhật thông tin sản phẩm" : "Chi tiết sản phẩm")</h3>
@@ -36,7 +38,6 @@ else
     @if (product != null)
     {
         <div>
-            <p><strong>ID:</strong> @product.Id</p>
             <p><strong>Mã:</strong> @product.Ma</p>
             <p><strong>Tên:</strong> @product.Ten</p>
             <p><strong>Ảnh:</strong> @product.Anh</p>
@@ -53,18 +54,16 @@ else
 }
 
 @code {
-    [Parameter]
-    public string? Id { get; set; }
+        [Parameter]
+        public string Id { get; set; }
 
     private ProductDetail product = new ProductDetail();
     private bool isEditing = false;
 
-    [Inject]
-    private IProductDetailService productService { get; set; }
-
-    protected override async void OnInitialized()
-    {
-        product = (await productService.GetById(Guid.Parse(Id)));
+   
+    protected override async Task OnInitializedAsync()
+    {   
+        product = await _productService.GetById(Guid.Parse(Id));
     }
 
     private void EditProduct()
@@ -74,7 +73,8 @@ else
 
     private void SaveProduct()
     {
-        productService.Update(product);
+        _productService.Update(product);
         isEditing = false;
+
     }
 }
