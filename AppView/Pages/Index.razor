@@ -20,6 +20,7 @@
 }
 
 <html class="no-js">
+<link rel="stylesheet" href="css/bootstrap/css1.css">
 
 <body>
     <img src="Image/bannerMCdonal.jpg" class="img-fluid" width="100%" alt="..." style="margin: auto">
@@ -46,23 +47,23 @@
                     }
                 </div>
                 @*   <div class="col-md-12">
-                <p class="ttitle-stores">Combo đồ ăn</p>
-                @if (_lstProductDetail != null)
-                {
-                foreach (var item in _lstProductDetail.Take(4))
-                {
-                <div class="col-md-3 item tbox-item-middle tlist-food">
-                <a class="hoverfx" @onclick="(() => GetById(item.Id))">
-                <div class="titem-middle">
-                <img class="img-responsive timg-food-combo-carousel tlist-food" src="@item.Anh" alt="" pagespeed_url_hash="995117272" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" />
-                <p class="tname-food-combo-carousel">@item.Ten<br><b>@item.GiaBan</b></p>
-                <a @onclick="(() => GetById(item.Id))" class="showWeb tbutton-food-combo-carousel">Xem chi tiết</a>
-                </div>
-                </a>
-                </div>
-                }
-                }
-                </div>*@
+                    <p class="ttitle-stores">Combo đồ ăn</p>
+                    @if (_lstProductDetail != null)
+                    {
+                    foreach (var item in _lstProductDetail.Take(4))
+                    {
+                    <div class="col-md-3 item tbox-item-middle tlist-food">
+                    <a class="hoverfx" @onclick="(() => GetById(item.Id))">
+                    <div class="titem-middle">
+                    <img class="img-responsive timg-food-combo-carousel tlist-food" src="@item.Anh" alt="" pagespeed_url_hash="995117272" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" />
+                    <p class="tname-food-combo-carousel">@item.Ten<br><b>@item.GiaBan</b></p>
+                    <a @onclick="(() => GetById(item.Id))" class="showWeb tbutton-food-combo-carousel">Xem chi tiết</a>
+                    </div>
+                    </a>
+                    </div>
+                    }
+                    }
+                    </div>*@
             </div>
         </div>
     </section>
