@@ -54,15 +54,15 @@ else
 }
 
 @code {
-        [Parameter]
-        public string Id { get; set; }
+    [Parameter]
+    public string Id { get; set; }
 
     private ProductDetail product = new ProductDetail();
     private bool isEditing = false;
 
-   
+
     protected override async Task OnInitializedAsync()
-    {   
+    {
         product = await _productService.GetById(Guid.Parse(Id));
     }
 
