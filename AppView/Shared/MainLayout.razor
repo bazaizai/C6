@@ -6,6 +6,10 @@
     {
         navigationManager.NavigateTo($"/index");
     }
+    void ShowAllFood()
+    {
+        navigationManager.NavigateTo($"/ShowAllFood");
+    }
 }
 <head>
     <!-- BASICS -->
@@ -54,7 +58,7 @@
                                             <div class="col-md-12">
                                                 <div class="col-md-3">
                                                     <ul class="tbox-menu-list-foods">
-                                                        <li class="tmenu-list-foods">
+                                                        <li @onclick="(() => ShowAllFood())" class="tmenu-list-foods">
                                                             Món ăn
                                                         </li>
                                                     </ul>
