@@ -101,6 +101,8 @@
     {
         listCart = (await cartDetailService.GetListEntity(Guid.Parse(Id))).ToList();
         sumTotal = listCart.Sum(x => x.SoLuong * x.Dongia);
+        StateHasChanged();
+
     }
 
     async void ShowItemComBo(Guid id)
