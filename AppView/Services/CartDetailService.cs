@@ -18,7 +18,7 @@ namespace AppView.Services
         {
             try
             {
-                return await (await _httpClient.PostAsJsonAsync("api/CartDetail", entity)).Content.ReadFromJsonAsync<bool>();
+                return await (await _httpClient.PostAsJsonAsync("api/CartDetails", entity)).Content.ReadFromJsonAsync<bool>();
             }
             catch (Exception ex)
             {

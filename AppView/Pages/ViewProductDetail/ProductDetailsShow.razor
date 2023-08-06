@@ -95,14 +95,28 @@
 
     }
 
-    private void AddToCart(ProductDetail pro)
+    private async void AddToCart(ProductDetail pro)
     {
-        cartDetailService.AddEntity(new CartDetail {
+        var listCartDetail = (await cartDetailService.GetListEntity(Extension.idUser));
+        if (listCartDetail.Any(x => x.Name == pro.Ten))
+        {
+            var cartDetailViewModel = listCartDetail.FirstOrDefault(x => x.Name == pro.Ten);
+            var cartDetail = await cartDetailService.GetEntityByKey(cartDetailViewModel.Id);
+            cartDetail.Soluong += 1;
+            await cartDetailService.UpdateEntity(cartDetail);
+            navigationManager.NavigateTo($"/CartDetails/{Extension.idUser}");
+
+            return;
+        }
+        await cartDetailService.AddEntity(new CartDetail
+        {
             DetailProductID = pro.Id,
             Soluong = 1,
             UserID = Extension.idUser,
             Dongia = Convert.ToDecimal(pro.GiaBan),
         });
+
+
         navigationManager.NavigateTo($"/CartDetails/{Extension.idUser}");
     }
 }
