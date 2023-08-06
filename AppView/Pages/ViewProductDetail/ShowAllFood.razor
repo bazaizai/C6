@@ -43,10 +43,7 @@
             lstPrice = selectedPrice.Split(".");
             searchResults = searchResults.Where(x => (Convert.ToInt32(lstPrice[0])<=x.GiaBan) && (x.GiaBan<=Convert.ToInt32(lstPrice[1]))).ToList();
         }
-        else
-        {
-            searchResults = new List<ProductDetail>(_lstProductDetail);
-        }
+ 
     }
 }
 
