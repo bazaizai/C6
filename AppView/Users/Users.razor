@@ -1,0 +1,64 @@
+﻿@page "/Users"
+@inject IUserServices UserServices
+
+@inject NavigationManager NavigationManager;
+
+@code {
+
+    private List<User> users;
+
+    protected override async Task OnInitializedAsync()
+    {
+        users = (await UserServices.GetAll()).ToList();
+    }
+    void Show(Guid id)
+    {
+        NavigationManager.NavigateTo($"/User/{id}");
+    }
+    async Task Delete(Guid id)
+    {
+        await UserServices.Delete(id);
+        NavigationManager.NavigateTo("User", forceLoad: true);
+    }
+    void Create()
+    {
+        NavigationManager.NavigateTo("/Create-User");
+    }
+}
+<button class="btn btn-primary mt-2" @onclick="Create">Create</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã</th>
+            <th>Tên</th>
+            <th>Chức vụ</th>
+            <th>Địa chỉ</th>
+            <th>Sdt</th>
+            <th>Email</th>
+            <th>Mật khẩu</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (users != null)
+        {
+            @foreach (var item in users)
+            {
+                <tr>
+                    <td>@item.Ma</td>
+                    <td>@item.Ten</td>
+                    <td>@item.IdRole</td>
+                    <td>@item.DiaChi</td>
+                    <td>@item.Sdt</td>
+                    <th>@item.Email</th>
+                    <th>@item.MatKhau</th>
+                    <td>
+                        <button class="btn btn-primary" @onclick="(() => Show(item.Id))"><i class="oi oi-pencil"></i></button>
+                        <button class="btn btn-primary" @onclick="(() => Delete(item.Id))"><i class="oi oi-delete"></i></button>
+                    </td>
+                </tr>
+            }
+
+        }
+
+    </tbody>
+</table>

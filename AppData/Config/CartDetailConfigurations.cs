@@ -10,8 +10,8 @@ namespace AppData.Config
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.UserID).HasColumnType("UNIQUEIDENTIFIER");
-            builder.Property(x => x.DetailProductID).HasColumnType("UNIQUEIDENTIFIER");
-            builder.Property(x => x.IdCombo).HasColumnType("UNIQUEIDENTIFIER");
+            builder.Property(x => x.DetailProductID).IsRequired(false);
+            builder.Property(x => x.IdCombo).IsRequired(false);
             builder.Property(x => x.Soluong).HasColumnType("int");
             builder.Property(x => x.Dongia).HasColumnType("decimal");
             builder.HasOne(x => x.Cart).WithMany(x => x.cartdetail).HasForeignKey(x => x.UserID);

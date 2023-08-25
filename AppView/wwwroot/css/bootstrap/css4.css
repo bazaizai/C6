@@ -1,0 +1,221 @@
+﻿@media only screen and (min-width: 768px) and (max-width: 1280px) {
+}
+
+@media only screen and (min-width: 769px) {
+    .img-mobile {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .menu > ul > li > ul > li > ul > li {
+        float: left;
+        width: 100%;
+        padding: 0px 0;
+        margin: 0;
+        font-size: .8em;
+    }
+
+        .menu > ul > li > ul > li > ul > li img {
+            float: left;
+            width: 100%;
+        }
+
+    .header-logo {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 9999;
+    }
+
+    .menu-mobile {
+        height: 80px;
+    }
+
+    .header {
+        height: 80px !important;
+    }
+
+    .header-button {
+        float: left;
+        position: absolute;
+        top: 15px !important;
+        right: 12%;
+    }
+
+    .img-mobile {
+        display: block !important;
+    }
+
+    .img-pc {
+        display: none !important;
+    }
+
+    .clr-container {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .show-on-mobile {
+        z-index: 9999;
+    }
+
+    .clear-padd-left {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .clear-padd-right {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .mobile-padd-top {
+        padding-top: 75px;
+    }
+
+    .mobile-padd-right {
+        padding-right: 15px;
+    }
+
+    .mobile-padd-left {
+        padding-left: 15px;
+    }
+
+    .index-delivery {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+        .index-delivery .content-delivery {
+            left: 15%;
+            top: 30%;
+        }
+
+    .text-content-first {
+        top: 23%;
+    }
+
+    .vcombo-detail-pc {
+        display: none !important;
+    }
+
+    .vcombo-detail-mobile {
+        display: block !important;
+    }
+
+    .vbg-slide-combodt {
+        background: none;
+        width: 100%;
+        float: left;
+        height: auto !important;
+    }
+
+    .vclear-margin {
+        margin-right: 0px;
+        margin-left: -15px !important;
+    }
+
+    .vcontent-slide-cb-detail {
+        position: absolute;
+        bottom: 40px;
+    }
+
+        .vcontent-slide-cb-detail .vcombo-p {
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-size: 36px;
+        }
+
+        .vcontent-slide-cb-detail .vcombo-title-slide {
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-family: OpenSans-bold;
+            font-size: 48px;
+        }
+
+        .vcontent-slide-cb-detail .vcombo-des-slide {
+            width: 90%;
+            padding-right: 0px;
+            /* padding-left: 30px; */
+            margin: auto;
+            padding-bottom: 30px;
+            text-align: center;
+            color: #fff;
+            font-family: OpenSans-light;
+        }
+
+        .vcontent-slide-cb-detail .vbtn-slide-cb-detail {
+            height: 48px;
+            border-radius: 30px;
+            border: 1px solid #fff;
+            padding-right: 20px;
+            padding-left: 20px;
+            color: #fff;
+            font-size: 36px;
+            text-decoration: none;
+        }
+
+    .vitem-combo {
+        text-align: center;
+        min-height: 400px !important;
+    }
+
+    .vitem-monan {
+        min-height: 430px !important;
+    }
+
+    .vorder-tabs {
+        border: none !important;
+        background: #5a3a3a;
+        padding-right: 0% !important;
+        padding-left: 0% !important;
+    }
+
+    .order-item-image img {
+        width: auto !important;
+    }
+}
+
+@media only screen and (max-width: 482px) {
+    .header-button {
+        display: none !important;
+    }
+
+    .img-content-first img {
+    }
+
+    .text-content-first {
+        top: 28% !important;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .text-content-first {
+        top: 15% !important;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .index-delivery img {
+        min-height: 260px;
+    }
+
+    .index-delivery .content-delivery {
+        left: 5%;
+    }
+
+    .item-slide {
+        min-height: 260px;
+    }
+
+        .item-slide img {
+            min-height: 260px;
+        }
+
+    .li-menu-order {
+        width: 50% !important;
+    }
+}

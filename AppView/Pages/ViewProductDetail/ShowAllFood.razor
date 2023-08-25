@@ -1,0 +1,94 @@
+﻿@page "/ShowAllFood"
+@inject IProductDetailService _IProductDetail
+@inject NavigationManager navigationManager
+@inject IProductDetailService _productDetailService
+
+@code {
+    private List<ProductDetail> _lstProductDetail;
+    private List<ProductDetail> searchResults;
+    private string search;
+    private string selectedPrice = "All";
+    string[] lstPrice;
+    protected override async Task OnInitializedAsync()
+    {
+        _lstProductDetail = (await _IProductDetail.GetAll()).ToList();
+        searchResults = new List<ProductDetail>(_lstProductDetail);
+
+    }
+    private void GetById(Guid id)
+    {
+        navigationManager.NavigateTo($"/products/detailshow/{id}");
+    }
+    void index()
+    {
+        navigationManager.NavigateTo($"/index");
+    }
+    private async Task SearchFoodAsync()
+    {
+        if (!string.IsNullOrEmpty(search))
+        {
+            searchResults =  _lstProductDetail.Where(x => x.Ten.Contains(search, StringComparison.OrdinalIgnoreCase)).ToList();
+        }else
+        if (selectedPrice != "All")
+        {
+            lstPrice = selectedPrice.Split(".");
+            searchResults = _lstProductDetail.Where(x => (Convert.ToInt32(lstPrice[0])<=x.GiaBan) && (x.GiaBan<=Convert.ToInt32(lstPrice[1]))).ToList();
+        }
+        else
+        {
+            searchResults = new List<ProductDetail>(_lstProductDetail);
+        }
+        if (selectedPrice != "All")
+        {
+            lstPrice = selectedPrice.Split(".");
+            searchResults = searchResults.Where(x => (Convert.ToInt32(lstPrice[0])<=x.GiaBan) && (x.GiaBan<=Convert.ToInt32(lstPrice[1]))).ToList();
+        }
+ 
+    }
+}
+
+<html class="no-js">
+    <input type="text" @bind="search"placeholder="Nhập tên đồ ăn"/>
+    <label for="price">Chọn mức giá:</label>
+    <select id="price" @bind="selectedPrice">
+        <option value="All">Tất cả</option>
+        <option value="2500000.5000000">Từ 250-500 $ </option>
+        <option value="5000000.30000000">Từ 500-3000 $ </option>
+        <option value="30000000.100000000">>3000 $ </option>
+    </select>
+
+    <button @onclick="SearchFoodAsync" >Tìm kiếm</button>
+<body>
+
+   
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="ttitle-stores">Món Ăn Hiện Đang bán</p>
+                    
+                    @if (searchResults != null)
+                    {
+                        foreach (var item in searchResults)
+                        {
+                            <div class="col-md-3 item tbox-item-middle tlist-food">
+                                <a class="hoverfx" @onclick="(() => GetById(item.Id))">
+                                    <div class="titem-middle">
+                                        <img class="img-responsive timg-food-combo-carousel tlist-food" src="@item.Anh" alt="" pagespeed_url_hash="995117272" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" />
+                                        <p class="tname-food-combo-carousel">@item.Ten<br><b>@item.GiaBan</b></p>
+                                        <a @onclick="(() => GetById(item.Id))" class="showWeb tbutton-food-combo-carousel">Xem chi tiết</a>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    }
+                </div>
+
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+﻿

@@ -1,0 +1,59 @@
+﻿@page "/productDetails"
+@inject IProductDetailService _IProductDetail
+@inject NavigationManager navigationManager
+@inject IProductDetailService _productDetailService
+
+@code {
+    private List<ProductDetail> _lstProductDetail;
+    protected override async Task OnInitializedAsync()
+    {
+        _lstProductDetail = (await _IProductDetail.GetAll()).ToList();
+    }
+    private void GetById(Guid id)
+    {
+        navigationManager.NavigateTo($"/products/detail/{id}");
+    }
+    private void Create()
+    {
+        navigationManager.NavigateTo("/products/crud");
+    }
+    private void DeleteProduct(Guid id)
+    {
+        _productDetailService.DeleteById(id);
+        navigationManager.NavigateTo("/productDetails", forceLoad: true);
+    }
+}
+
+<h1>Create</h1>
+<button class="btn btn-primary mt-2" @onclick="Create">Create Product</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ten</th>
+            <th>Ma</th>
+            <th>Gia ban</th>
+            <th>Anh</th>
+            <th>Loai</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (_lstProductDetail != null)
+        {
+            foreach (var item in _lstProductDetail)
+            {
+                <tr>
+                    <td>@item.Ten</td>
+                    <td>@item.Ma</td>
+                    <td>@item.GiaBan</td>
+                    <td>@item.Anh</td>
+                    <td>@item.Loai</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="(() => GetById(item.Id))"><i class="oi oi-pencil"></i></button>
+                    </td>
+                    <td><button class="btn btn-danger" @onclick="(()=>DeleteProduct(item.Id))">Xóa</button></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

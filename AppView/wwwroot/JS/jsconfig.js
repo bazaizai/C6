@@ -1,0 +1,1 @@
+export const show = () => alert("abc") 

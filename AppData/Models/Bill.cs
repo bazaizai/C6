@@ -14,7 +14,7 @@ namespace AppData.Models
         public string? DiaChi { get; set; }
         public string? Sdt { get; set; }
         public decimal? TienShip { get; set; }
-        public virtual User User { get; set; }
-        public virtual List<BillDetail> BillDetails { get; set; }
+        public virtual User? User { get; set; }
+        public virtual List<BillDetail>? BillDetails { get; set; }
     }
 }
